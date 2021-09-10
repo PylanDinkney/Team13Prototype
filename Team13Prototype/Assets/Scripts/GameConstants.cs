@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameConstants : MonoBehaviour
 {
     public static string currentPossession = "";
+    public static string interactibleInRange = "";
 
     // Start is called before the first frame update
     void Start()
