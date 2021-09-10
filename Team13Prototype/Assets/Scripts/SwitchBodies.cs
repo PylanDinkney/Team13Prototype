@@ -5,6 +5,7 @@ using UnityEngine;
 public class SwitchBodies : MonoBehaviour
 {
     private static bool keyIsDown;
+    public string SwitchBodiesKey = "e";
 
     void Start(){
         keyIsDown = false;
@@ -13,14 +14,14 @@ public class SwitchBodies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("e") && keyIsDown == false){
+        if(Input.GetKeyDown(SwitchBodiesKey) && keyIsDown == false){
             keyIsDown = true;
             if(GameConstants.currentPossession == "StartingPossession"){
                 GameConstants.currentPossession = "SecondaryPossession";
             } else {
                 GameConstants.currentPossession = "StartingPossession";
             }
-        } else if(Input.GetKeyUp("e") && keyIsDown == true){
+        } else if(Input.GetKeyUp(SwitchBodiesKey) && keyIsDown == true){
             keyIsDown = false;
         }
     }
