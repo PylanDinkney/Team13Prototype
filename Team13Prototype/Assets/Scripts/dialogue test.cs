@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-struct Conversation
+public struct Conversation
 {
     public Dictionary<string, string> conversation; //formatted keys : "12" where 1 would represent choosing the first option in the first choice, 2 the second option in the second choice and so on. 
     //fomatted values : string that contains what the npc response is to the choices
-    public Dictionary<int, int> choices; //key : what choice are we on starting at 1 being the first choice after the player greets this npc
+    public Dictionary<int, int> choices; //key : what choice are we on starting at 1 being the first choice, a choice of how the player greets this npc
     //value : how many choices for this
 }
 
@@ -20,7 +20,7 @@ public class dialoguetest : MonoBehaviour
     bool inChat = true;
     private string conversationIndex = "";
     public string currentConversation = "conversation 1";
-    Dictionary<string, Conversation> conversations = new Dictionary<string, Conversation>(); //name of conversation:dictionary for that conversation
+    public Dictionary<string, Conversation> conversations = new Dictionary<string, Conversation>(); //name of conversation:dictionary for that conversation
     void Start()
     {
         //add choices to the conversation 
@@ -63,13 +63,10 @@ public class dialoguetest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (inRange && !inChat) {
-        //    StartDialogue("1");
-        //}
         
     }
 
-    public void StartDialogue(string playerChoice)// event handler? takes in what the player's last response was and gives the npc response
+    public void RespondToPlayer(string playerChoice)// event handler? takes in what the player's last response was and gives the npc response
     {
         if (conversationIndex == "141")//this option makes the npc not respond to the player
         {
@@ -77,7 +74,7 @@ public class dialoguetest : MonoBehaviour
             return;
         }
 
-        conversationIndex = conversationIndex + playerChoice; // append player's choice to the conversation pointer
+        conversationIndex = conversationIndex + playerChoice; // append player's choice to the conversation pointer (remember previous choices)
         string message = conversations[currentConversation].conversation[conversationIndex];//get the next message that the npc is going to say
 
         print(message); //TODO display dialogue for the modified conversation index
@@ -87,8 +84,6 @@ public class dialoguetest : MonoBehaviour
             //add this character to the list of playable characters
             //add to GameConstants.currentPossession list
         }
-        
-
 
     }
     /*
