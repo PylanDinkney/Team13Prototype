@@ -14,12 +14,15 @@ public class SwitchBodies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(SwitchBodiesKey) && keyIsDown == false){
+        if(Input.GetKeyDown(SwitchBodiesKey) && keyIsDown == false)
+        {
             keyIsDown = true;
-            if(GameConstants.currentPossession == "StartingPossession"){
-                GameConstants.currentPossession = "SecondaryPossession";
-            } else {
-                GameConstants.currentPossession = "StartingPossession";
+            if(GameConstants.Possessable.Count >= 2)
+            {
+                GameConstants.currentPossession++;
+                if (GameConstants.currentPossession >= GameConstants.Possessable.Count) {
+                    GameConstants.currentPossession = 0;
+                }
             }
         } else if(Input.GetKeyUp(SwitchBodiesKey) && keyIsDown == true){
             keyIsDown = false;

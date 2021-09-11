@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class GameConstants : MonoBehaviour
 {
-    public static string currentPossession = "";
+    public static int currentPossession = 0;
     public static string interactibleInRange = "";
     public static List<string> Possessable = new List<string>();
 
     // Start is called before the first frame update
     void Start()
     {
-        currentPossession = "StartingPossession";
         Possessable.Add("StartingPossession");
+        Possessable.Add("SecondaryPossession");
     }
 
     // Update is called once per frame

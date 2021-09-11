@@ -5,13 +5,13 @@ using UnityEngine;
 public class PlayerDialogueTrigger : MonoBehaviour
 {
     void OnTriggerEnter(Collider other) {
-        if (other.gameObject.name != GameConstants.currentPossession) {
+        if (other.gameObject.name != GameConstants.Possessable[GameConstants.currentPossession]) {
             
         }
     }
 
     void OnTriggerExit(Collider other) {
-        if (other.gameObject.name != GameConstants.currentPossession) {
+        if (other.gameObject.name != GameConstants.Possessable[GameConstants.currentPossession]) {
             GameConstants.interactibleInRange = "";
         }
     }
