@@ -33,7 +33,7 @@ public class dialoguetest : MonoBehaviour
 
         //---conversation 1
         conversation1.numChoices[1] = 2;
-        conversation1.choices.Add("1", "this is the first option the player can choose to say");
+        conversation1.choices.Add("1", "this is the first option the player can choose to say ;)");
         conversation1.choices.Add("2", "this is the second option the player can choose to say");
         conversation1.responses.Add("1", "this is my reponse to the player choosing the first option");
         conversation1.responses.Add("2", "this is my reponse to the player choosing the second option");
@@ -45,7 +45,7 @@ public class dialoguetest : MonoBehaviour
         conversation1.choices.Add("14", "this is the fourth option");
         conversation1.responses.Add("11", "this is my reponse to the player choosing the first option then the first option");
         conversation1.responses.Add("12", "this is my reponse to the player choosing the second option then the second option");
-        conversation1.responses.Add("13", "this is my reponse to the player choosing the first option then the third option");
+        conversation1.responses.Add("13", "this is my reponse to the player choosing the first option then the third option ;)");
         conversation1.responses.Add("14", "this is my reponse to the player choosing the second option then the fourth option");
 
         conversation1.choices.Add("21", "this is the first option");
@@ -60,11 +60,11 @@ public class dialoguetest : MonoBehaviour
         conversation1.numChoices[3] = 1;
         conversation1.choices.Add("111", "player's last message");
         conversation1.choices.Add("121", "player's last message");
-        conversation1.choices.Add("131", "player's last message");
+        conversation1.choices.Add("131", "player's last message and add this npc to the cult");
         conversation1.choices.Add("141", "player's last message");
         conversation1.responses.Add("111", "this is my reponse last response to the player");
         conversation1.responses.Add("121", "this is my reponse last response to the player");
-        conversation1.responses.Add("131", "this is my reponse last response to the player");
+        conversation1.responses.Add("131", "I am joining the cult!!!");
         conversation1.responses.Add("141", "this is my reponse last response to the player");
 
         conversation1.choices.Add("211", "player's last message");
@@ -86,7 +86,7 @@ public class dialoguetest : MonoBehaviour
         
     }
     // choice number is the number of choices that the player has peviously made in this conversation +1
-    public void DisplayChoices(int choiceNumber) { //displays a list of playerchoices for what they can say in a conversation
+    public List<string> DisplayChoices(int choiceNumber) { //displays a list of playerchoices for what they can say in a conversation
         int numOptions = conversations[currentConversation].numChoices[choiceNumber];
         List<string> displaychoices = new List<string>();
         for (int i = 1; i <= numOptions; i++)
@@ -95,30 +95,30 @@ public class dialoguetest : MonoBehaviour
             displaychoices.Add(conversations[currentConversation].choices[temp]);//get the text for each choice and store it in display choices
         }
 
-        print(displaychoices);//TODO: display dialogue choices
+        return displaychoices;
 
     }
 
     // player choice is the number of the option that the player choose, starts at 1
-    public void RespondToPlayer(string playerChoice)// takes in what the player's last response was and gives the npc response
+    public string RespondToPlayer(string playerChoice)// takes in what the player's last response was and gives the npc response
     {
         if (conversationIndex == "141")//this option makes the npc not respond to the player
         {
             //end conversation
-            return;
+            return null;
         }
 
         conversationIndex = conversationIndex + playerChoice; // append player's choice to the conversation pointer (remember previous choices)
         string message = conversations[currentConversation].responses[conversationIndex];//get the next message that the npc is going to say
 
-        print(message); //TODO: display dialogue for the modified conversation index
 
         if (conversationIndex == "131") { //if the player gets the correct squence then another thing happens or they join your team
             //player chose option 131 
             //add this character to the list of playable characters
-            //add to GameConstants.currentPossession list
+            //add gameObject.name to GameConstants.Possessable list
+            GameConstants.Possessable.Add(gameObject.name);
         }
-
+        return message;
     }
     /*
      * called before conversations to reset the index

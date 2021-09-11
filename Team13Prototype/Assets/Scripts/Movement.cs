@@ -23,7 +23,8 @@ public class Movement : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
-        if(GameConstants.currentPossession == gameObject.name){
+        if(GameConstants.currentPossession == gameObject.name)
+        { //TODO: check if Possessable
             Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             controller.Move(move * Time.deltaTime * playerSpeed);
 
