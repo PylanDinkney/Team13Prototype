@@ -11,8 +11,7 @@ public class GameConstants : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Possessable.Add("StartingPossession");
-        Possessable.Add("SecondaryPossession");
+        
     }
 
     // Update is called once per frame
