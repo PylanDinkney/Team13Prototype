@@ -17,6 +17,7 @@ public class PickupObject : MonoBehaviour
             GameObject player = GameObject.Find(GameConstants.Possessable[GameConstants.currentPossession]);
             playerAttributes playerAttributes = player.gameObject.GetComponent<playerAttributes>();
             playerAttributes.item = item;
+            Destroy(gameObject);
         } 
     }
 
