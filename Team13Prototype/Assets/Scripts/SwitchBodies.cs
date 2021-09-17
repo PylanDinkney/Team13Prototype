@@ -22,26 +22,29 @@ public class SwitchBodies : MonoBehaviour
         if((Input.GetKeyDown(SwitchBodiesKey) || Input.GetKeyDown(SwitchBodiesKeyBack)) && keyIsDown == false)
         {
             keyIsDown = true;
-            if(GameConstants.Possessable.Count >= 2)
+            if(GameConstants.Possessable.Count >= 2) //if there is a body to switch to
             {
-                if(Input.GetKeyDown(SwitchBodiesKey)){
+                if(Input.GetKeyDown(SwitchBodiesKey)){//switch up
                     GameConstants.currentPossession++;
                     eWentDown = true;
                 }
-                else{
+                else{ //switch down
                     GameConstants.currentPossession--;
                     qWentDown = true;
                 }
-                if (GameConstants.currentPossession >= GameConstants.Possessable.Count) {
+                if (GameConstants.currentPossession >= GameConstants.Possessable.Count) { //if index(currentPossession) is out of bounds, wrap around
                     GameConstants.currentPossession = 0;
-                } else if(GameConstants.currentPossession < 0){
+                } 
+                else if(GameConstants.currentPossession < 0){
                     GameConstants.currentPossession = GameConstants.Possessable.Count - 1;
                 }
             }
-        } else if(Input.GetKeyUp(SwitchBodiesKey) && keyIsDown == true && eWentDown == true){
+        } //key up, reset boolean flags
+        else if(Input.GetKeyUp(SwitchBodiesKey) && keyIsDown == true && eWentDown == true){
             keyIsDown = false;
             eWentDown = false;
-        } else if(Input.GetKeyUp(SwitchBodiesKeyBack) && keyIsDown == true && qWentDown == true){
+        } 
+        else if(Input.GetKeyUp(SwitchBodiesKeyBack) && keyIsDown == true && qWentDown == true){
             keyIsDown = false;
             qWentDown = false;
         }
