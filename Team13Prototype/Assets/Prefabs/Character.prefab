@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 15788285149280652}
   - component: {fileID: 15788285149280653}
   - component: {fileID: 15788285149280654}
-  - component: {fileID: 15788285149280655}
   - component: {fileID: 15788285149280643}
   - component: {fileID: 15788285149280648}
   - component: {fileID: 988886803656463672}
+  - component: {fileID: 3493394003720296465}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -85,20 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &15788285149280655
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 15788285149280650}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!54 &15788285149280643
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -137,5 +123,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3597e975668e6cb4090211678a52146e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
+  conversionRate: 0
+  type: 
+  item: 
+  itemWeakness: 
+--- !u!114 &3493394003720296465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15788285149280650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9a0873739ed2164cb09fc2dd465a290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

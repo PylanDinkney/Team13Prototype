@@ -4,35 +4,16 @@ using UnityEngine;
 
 public class GameViewController : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
-        GameConstants.Possessable = GetSceneCharacters();
-        GameConstants.currentPossession = 0;
+        SceneConstants.Possessable = GetSceneCharacters();
+        SceneConstants.currentPossession = 0;
+        SceneConstants.SceneDiaUI = GameObject.Find("DialogueUI");
+        SceneConstants.SceneDiaUI.SetActive(false);
+        SceneConstants.InDialouge = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.name != GameConstants.Possessable[GameConstants.currentPossession] && other.gameObject.tag == "Character")
-        {
-            Debug.Log("Testing");
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.name != GameConstants.Possessable[GameConstants.currentPossession] && other.gameObject.tag == "Character")
-        {
-            Debug.Log("Testing");
-        }
-    }
-
+    //Gets names of all game objecst that are characters (have the "Character" tag)
     List<string> GetSceneCharacters()
     {
         List<string> temp = new List<string>();

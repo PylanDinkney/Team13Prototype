@@ -17,24 +17,38 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        groundedPlayer = controller.isGrounded;
-        if (groundedPlayer && playerVelocity.y < 0)
+        if (!SceneConstants.InDialouge)
         {
-            playerVelocity.y = 0f;
-        }
-
-        if(GameConstants.Possessable[GameConstants.currentPossession] == gameObject.name)
-        {
-            Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            controller.Move(move * Time.deltaTime * playerSpeed);
-
-            if (move != Vector3.zero)
+            groundedPlayer = controller.isGrounded;
+            if (groundedPlayer && playerVelocity.y < 0)
             {
-                gameObject.transform.forward = move;
+                playerVelocity.y = 0f;
             }
+
+            if (SceneConstants.Possessable[SceneConstants.currentPossession] == gameObject.name)
+            {
+                Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                controller.Move(move * Time.deltaTime * playerSpeed);
+
+                if (move != Vector3.zero)
+                {
+                    gameObject.transform.forward = move;
+                }
+            }
+
+            playerVelocity.y += gravityValue * Time.deltaTime;
+            controller.Move(playerVelocity * Time.deltaTime);
         }
-        
-        playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
+        else
+        {
+            groundedPlayer = controller.isGrounded;
+            if (groundedPlayer && playerVelocity.y < 0)
+            {
+                playerVelocity.y = 0f;
+            }
+
+            playerVelocity.y += gravityValue * Time.deltaTime;
+            controller.Move(playerVelocity * Time.deltaTime);
+        }
     }
 }
