@@ -14,7 +14,7 @@ public class PickupObject : MonoBehaviour
     void Update(){
         if(Input.GetKeyDown(KeyCode.C) && inRange == true){
             Debug.Log("Picked up item!");
-            GameObject player = GameObject.Find(GameConstants.Possessable[GameConstants.currentPossession]);
+            GameObject player = GameObject.Find(SceneConstants.Possessable[SceneConstants.currentPossession]);
             playerAttributes playerAttributes = player.gameObject.GetComponent<playerAttributes>();
             playerAttributes.item = item;
             Destroy(gameObject);
@@ -23,13 +23,13 @@ public class PickupObject : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == GameConstants.Possessable[GameConstants.currentPossession]){
+        if(other.gameObject.name == SceneConstants.Possessable[SceneConstants.currentPossession]){
             inRange = true;
         }
     }
 
     void OnTriggerExit(Collider other){
-        if(other.gameObject.name == GameConstants.Possessable[GameConstants.currentPossession]){
+        if(other.gameObject.name == SceneConstants.Possessable[SceneConstants.currentPossession]){
             inRange = false;
         }
     }

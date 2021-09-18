@@ -6,17 +6,16 @@ using TMPro;
 public class Dialouge : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
-    public string currentText;
     public float textSpeed;
 
-    void NextDialogue() {
+    public void NextDialogue(string text) {
         textComponent.text = string.Empty;
-        StartCoroutine(TypeLine());
+        StartCoroutine(TypeLine(text));
     }
 
-    IEnumerator TypeLine()
+    IEnumerator TypeLine(string text)
     {
-        foreach (char c in currentText.ToCharArray()) {
+        foreach (char c in text.ToCharArray()) {
             textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
         }

@@ -116,7 +116,7 @@ public class dialoguetest : MonoBehaviour
             //player chose option 131 
             //add this character to the list of playable characters
             //add gameObject.name to GameConstants.Possessable list
-            GameConstants.Possessable.Add(gameObject.name);
+            SceneConstants.Possessable.Add(gameObject.name);
         }
         return message;
     }
