@@ -8,4 +8,6 @@ public class SceneConstants : MonoBehaviour
     public static List<string> Possessable = new List<string>();
     public static GameObject SceneDiaUI;
     public static bool InDialouge;
+    public static bool InConversation;
+    public static GameObject DiaCharacter;
 }

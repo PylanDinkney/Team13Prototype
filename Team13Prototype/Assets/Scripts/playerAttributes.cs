@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class playerAttributes : MonoBehaviour
 {
-    public string name;
-    public int conversionRate; 
-    public string type;
-    public string item;
-    public string itemWeakness;
+    public string Name;
+    public int ConversionRate; 
+    public string Type;
+    public string Item;
+    public string ItemWeakness;
+    public bool IsConverted;
+    public string Greeting;
 }

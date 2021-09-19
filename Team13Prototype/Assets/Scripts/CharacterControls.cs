@@ -2,25 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwitchBodies : MonoBehaviour
+public class CharacterControls : MonoBehaviour
 {
+    // Movement
+    private CharacterController controller;
+    private Vector3 playerVelocity;
+    private bool groundedPlayer;
+    private float playerSpeed = 5.0f;
+    private float gravityValue = -9.81f;
+
+    // Switching Bodies
     private static bool keyIsDown;
     private static bool eWentDown;
     private static bool qWentDown;
     public string SwitchBodiesKey = "e";
     public string SwitchBodiesKeyBack = "q";
 
-    void Start(){
+    private void Start()
+    {
+        controller = gameObject.AddComponent<CharacterController>();
         keyIsDown = false;
         eWentDown = false;
         qWentDown = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!SceneConstants.InDialouge)
         {
+            //Movement
+            groundedPlayer = controller.isGrounded;
+            if (groundedPlayer && playerVelocity.y < 0)
+            {
+                playerVelocity.y = 0f;
+            }
+
+            if (SceneConstants.Possessable[SceneConstants.currentPossession] == gameObject.name)
+            {
+                Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                controller.Move(move * Time.deltaTime * playerSpeed);
+
+                if (move != Vector3.zero)
+                {
+                    gameObject.transform.forward = move;
+                }
+            }
+
+            playerVelocity.y += gravityValue * Time.deltaTime;
+            controller.Move(playerVelocity * Time.deltaTime);
+
+            //Switching Bodies
             if ((Input.GetKeyDown(SwitchBodiesKey) || Input.GetKeyDown(SwitchBodiesKeyBack)) && keyIsDown == false)
             {
                 keyIsDown = true;
@@ -52,6 +83,18 @@ public class SwitchBodies : MonoBehaviour
                 keyIsDown = false;
                 qWentDown = false;
             }
+        }
+        else
+        {
+            //Movement
+            groundedPlayer = controller.isGrounded;
+            if (groundedPlayer && playerVelocity.y < 0)
+            {
+                playerVelocity.y = 0f;
+            }
+
+            playerVelocity.y += gravityValue * Time.deltaTime;
+            controller.Move(playerVelocity * Time.deltaTime);
         }
     }
 }

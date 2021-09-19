@@ -18,8 +18,6 @@ public class dialoguetest : MonoBehaviour
 {
 
     Conversation conversation1 = new Conversation();
-    bool inRange = true;
-    bool inChat = true;
     private string conversationIndex = "";
     public string currentConversation = "conversation 1";
     public Dictionary<string, Conversation> conversations = new Dictionary<string, Conversation>(); //name of conversation:dictionary for that conversation

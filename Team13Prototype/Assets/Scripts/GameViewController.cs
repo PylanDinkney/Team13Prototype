@@ -11,6 +11,8 @@ public class GameViewController : MonoBehaviour
         SceneConstants.SceneDiaUI = GameObject.Find("DialogueUI");
         SceneConstants.SceneDiaUI.SetActive(false);
         SceneConstants.InDialouge = false;
+        SceneConstants.InConversation = false;
+        SceneConstants.DiaCharacter = null;
     }
 
     //Gets names of all game objecst that are characters (have the "Character" tag)
