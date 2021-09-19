@@ -18,8 +18,9 @@ public class PickupObject : MonoBehaviour
             {
                 if (player.GetComponent<playerAttributes>().CharName == SceneConstants.Possessable[SceneConstants.currentPossession])
                 {
-                    player.gameObject.GetComponent<playerAttributes>().Item = item;
-                }
+                    player.GetComponent<playerAttributes>().Item = item;
+                    break;
+                }  
             }
             Destroy(gameObject);
         } 

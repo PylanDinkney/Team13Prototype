@@ -25,7 +25,10 @@ public class GameViewController : MonoBehaviour
     {
         List<string> temp = new List<string>();
         foreach (GameObject c in GameObject.FindGameObjectsWithTag("Character"))
-            temp.Add(c.GetComponent<playerAttributes>().CharName);
+        {
+            if (c.GetComponent<playerAttributes>().IsConverted)
+                temp.Add(c.GetComponent<playerAttributes>().CharName);
+        }
         return temp;
     }
 }

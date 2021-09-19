@@ -14,15 +14,15 @@ public class DialogueTrigger : MonoBehaviour
             Collider[] objects = Physics.OverlapSphere(transform.position, 2);
 
             float dist = 0;
-            GameObject curr = null;
+            GameObject other = null;
             foreach (Collider c in objects)
             {
                 if (c.tag == "Character" && c.gameObject.GetComponent<playerAttributes>().CharName != SceneConstants.Possessable[SceneConstants.currentPossession])
                 {
-                    if (curr == null)
+                    if (other == null)
                     {
                         dist = Vector3.Distance(this.transform.position, c.transform.position);
-                        curr = c.gameObject;
+                        other = c.gameObject;
                     }
                     else
                     {
@@ -30,40 +30,85 @@ public class DialogueTrigger : MonoBehaviour
                         if (temp < dist)
                         {
                             dist = temp;
-                            curr = c.gameObject;
+                            other = c.gameObject;
                         }
                     }
                 }
             }
 
             // Open UI and setup/disable nescessary buttons including loading specific dialogue tree from resources
-            if (curr != null)
+            if (other != null)
             {
                 // Find path to dialogue and add button listener for Dialogue Channel request to start dialogue with found dialogue
                 SceneConstants.InDialouge = true;
-                SceneConstants.DiaCharacter = curr;
+                SceneConstants.DiaCharacter = other;
+
+                playerAttributes otherAttr = other.GetComponent<playerAttributes>();
+
+                GameObject curr = null;
+                foreach (GameObject player in GameObject.FindGameObjectsWithTag("Character"))
+                {
+                    if (player.GetComponent<playerAttributes>().CharName == SceneConstants.Possessable[SceneConstants.currentPossession])
+                        curr = player;
+                }
+                playerAttributes currAttr = curr.GetComponent<playerAttributes>();
 
                 string path = "";
-                if (curr.GetComponent<playerAttributes>().IsConverted)
+                if (otherAttr.IsConverted)
                 {
                     path = "Dialogue/" + SceneConstants.Possessable[SceneConstants.currentPossession] + "/" +
-                    SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + curr.GetComponent<playerAttributes>().CharName + "/Post";
+                    SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + otherAttr.CharName + "/Post";
                 }
                 else
                 {
                     path = "Dialogue/" + SceneConstants.Possessable[SceneConstants.currentPossession] + "/" +
-                    SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + curr.GetComponent<playerAttributes>().CharName + "/Pre";
+                    SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + otherAttr.CharName + "/Pre";
                 }
 
-                Debug.Log(path);
                 DialogueChannel c = (DialogueChannel)Resources.Load("Dialogue/DialogueChannel");
+                SceneConstants.SceneDiaUI.GetComponentInChildren<UnityEngine.UI.Button>().onClick.RemoveAllListeners();
                 SceneConstants.SceneDiaUI.GetComponentInChildren<UnityEngine.UI.Button>().onClick.AddListener(delegate { c.RaiseRequestDialogue((Dialogue)Resources.Load(path)); });
 
-                // Enable buttons that can be enabled (convert, lure, 
+                // Enable buttons that can be enabled (convert, lure, give)
                 foreach (UnityEngine.UI.Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<UnityEngine.UI.Button>())
                 {
-                    if (button.name != "TalkButton")
-                        button.interactable = false;
+                    if (button.name == "ConvertButton")
+                    {
+                        if (!otherAttr.IsConverted)
+                        {
+                            int level = 0;
+                            if (currAttr.Item == otherAttr.ItemWeakness)
+                                level += 2;
+                            if (currAttr.Trait == otherAttr.Trait)
+                                level += 1;
+                            else if (currAttr.TraitWeakness == otherAttr.Trait)
+                                level -= 1;
+                            else if (currAttr.Trait == otherAttr.TraitWeakness)
+                                level += 2;
+
+                            if (level >= otherAttr.ConversionThreshold)
+                                button.interactable = true;
+                        }
+                        
+                    }
+                    if (button.name == "GiveButton")
+                    {
+                        if (otherAttr.IsConverted && currAttr.Item != "" && otherAttr.Item == "")
+                            button.interactable = true;
+                    }
+                }
+
+                // Change Text components of UI
+                foreach (TextMeshProUGUI text in SceneConstants.SceneDiaUI.GetComponentsInChildren<TextMeshProUGUI>())
+                {
+                    if (text.name == "DialogueText")
+                        text.text = otherAttr.Greeting;
+                    if (text.name == "CharacterName")
+                        text.text = otherAttr.CharName;
+                    if (text.name == "CharacterTrait")
+                        text.text = otherAttr.Trait;
+                    if (text.name == "CharacterItem")
+                        text.text = "Item: " + currAttr.Item;
                 }
 
                 SceneConstants.SceneDiaUI.SetActive(true);
@@ -75,6 +120,7 @@ public class DialogueTrigger : MonoBehaviour
             SceneConstants.InDialouge = false;
             SceneConstants.DiaCharacter = null;
 
+            
             foreach (UnityEngine.UI.Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<UnityEngine.UI.Button>())
             {
                 if (button.name != "TalkButton")

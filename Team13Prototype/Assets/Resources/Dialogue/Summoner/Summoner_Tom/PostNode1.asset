@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a8a0cc3acd27249811cd087129b247, type: 3}
+  m_Name: PostNode1
+  m_EditorClassIdentifier: 
+  m_DialogueLine: {fileID: 11400000, guid: 448ac22a47cdd0d4ebd97dfbdd536bbe, type: 2}
+  m_Choices:
+  - m_ChoicePreview: Ask about his CEO.
+    m_ChoiceNode: {fileID: 11400000, guid: 2f98a520b6b74f94c9e40539f77b968d, type: 2}
+  - m_ChoicePreview: Ask about his Manager.
+    m_ChoiceNode: {fileID: 11400000, guid: 15fc50680ff931d4dbe93c1b4527f6d4, type: 2}

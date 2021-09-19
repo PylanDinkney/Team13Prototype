@@ -59,10 +59,47 @@ public class UIDialogueTextBoxController : MonoBehaviour, DialogueNodeVisitor
         m_NextNode = null;
         m_ListenToInput = false;
         SceneConstants.InConversation = false;
+
+        GameObject curr = null;
+        GameObject other = null;
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Character"))
+        {
+            if (player.GetComponent<playerAttributes>().CharName == SceneConstants.Possessable[SceneConstants.currentPossession])
+                curr = player;
+            else if (player == SceneConstants.DiaCharacter)
+                other = player;
+        }
+
+        playerAttributes currAttr = curr.GetComponent<playerAttributes>();
+        playerAttributes otherAttr = other.GetComponent<playerAttributes>();
+
         foreach (UnityEngine.UI.Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<UnityEngine.UI.Button>())
         {
             if (button.name == "TalkButton")
                 button.interactable = true;
+            if (button.name == "ConvertButton")
+            {
+                if (!otherAttr.IsConverted)
+                {
+                    int level = 0;
+                    if (currAttr.Item == otherAttr.ItemWeakness)
+                        level += 2;
+                    if (currAttr.Trait == otherAttr.Trait)
+                        level += 1;
+                    else if (currAttr.TraitWeakness == otherAttr.Trait)
+                        level -= 1;
+                    else if (currAttr.Trait == otherAttr.TraitWeakness)
+                        level += 2;
+
+                    if (level >= otherAttr.ConversionThreshold)
+                        button.interactable = true;
+                }
+            }
+            if (button.name == "GiveButton")
+            {
+                if (otherAttr.IsConverted && currAttr.Item != "" && otherAttr.Item == "")
+                    button.interactable = true;
+            }
         }
 
         foreach (Transform child in m_ChoicesBoxTransform)
