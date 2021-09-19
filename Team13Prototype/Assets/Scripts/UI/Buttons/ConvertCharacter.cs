@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ConvertCharacter : MonoBehaviour
 {
@@ -26,11 +27,17 @@ public class ConvertCharacter : MonoBehaviour
                 button.interactable = false;
             else if (button.name == "GiveButton")
             {
-                Debug.Log(otherAttr.IsConverted);
-                Debug.Log(currAttr.Item);
-                Debug.Log(otherAttr.Item);
                 if (otherAttr.IsConverted && currAttr.Item != "" && otherAttr.Item == "")
                     button.interactable = true;
+            }
+        }
+
+        foreach (TextMeshProUGUI text in SceneConstants.SceneDiaUI.GetComponentsInChildren<TextMeshProUGUI>())
+        {
+            if (text.name == "DialogueText")
+            {
+                text.text = "** " + otherAttr.CharName + " has been converted and is now controllable **";
+                break;
             }
         }
 

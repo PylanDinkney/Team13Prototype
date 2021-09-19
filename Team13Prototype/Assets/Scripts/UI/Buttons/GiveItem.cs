@@ -21,6 +21,15 @@ public class GiveItem : MonoBehaviour
 
         playerAttributes currAttr = curr.GetComponent<playerAttributes>();
 
+        foreach (TextMeshProUGUI text in SceneConstants.SceneDiaUI.GetComponentsInChildren<TextMeshProUGUI>())
+        {
+            if (text.name == "DialogueText")
+            {
+                text.text = "** " + currAttr.Item + " has been given to " + otherAttr.CharName + " **";
+                break;
+            }
+        }
+
         otherAttr.Item = currAttr.Item;
         currAttr.Item = "";
 
@@ -36,7 +45,10 @@ public class GiveItem : MonoBehaviour
         foreach (TextMeshProUGUI text in SceneConstants.SceneDiaUI.GetComponentsInChildren<TextMeshProUGUI>())
         {
             if (text.name == "CharacterItem")
+            {
                 text.text = "Item:";
+                break;
+            }     
         }
     }
 }

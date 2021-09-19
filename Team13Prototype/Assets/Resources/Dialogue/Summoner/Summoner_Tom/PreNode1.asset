@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DialogueLine: {fileID: 11400000, guid: b9d6fb98ff0f92e42a3f9deff9119578, type: 2}
   m_Choices:
-  - m_ChoicePreview: Ask about his CEO.
+  - m_ChoicePreview: What can you tell me about your CEO?
     m_ChoiceNode: {fileID: 11400000, guid: 2f98a520b6b74f94c9e40539f77b968d, type: 2}
-  - m_ChoicePreview: Ask about his manager.
+  - m_ChoicePreview: What do you know about your manager?
     m_ChoiceNode: {fileID: 11400000, guid: 15fc50680ff931d4dbe93c1b4527f6d4, type: 2}
