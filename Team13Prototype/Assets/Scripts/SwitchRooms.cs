@@ -9,7 +9,7 @@ public class SwitchRooms : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == SceneConstants.Possessable[SceneConstants.currentPossession]){
+        if(other.gameObject.tag == "Character" &&  other.gameObject.GetComponent<playerAttributes>().CharName == SceneConstants.Possessable[SceneConstants.currentPossession]){
             SceneManager.LoadScene(roomToGoTo);
         }
     }

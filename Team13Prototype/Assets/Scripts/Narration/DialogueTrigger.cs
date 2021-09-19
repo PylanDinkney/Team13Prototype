@@ -8,7 +8,7 @@ public class DialogueTrigger : MonoBehaviour
 
     void Update()
     {
-        if (!SceneConstants.InDialouge && Input.GetKeyDown(KeyCode.F) && this.gameObject.name == SceneConstants.Possessable[SceneConstants.currentPossession])
+        if (!SceneConstants.InDialouge && Input.GetKeyDown(KeyCode.F) && this.gameObject.GetComponent<playerAttributes>().CharName == SceneConstants.Possessable[SceneConstants.currentPossession])
         {
             // Get closest valid interactable character
             Collider[] objects = Physics.OverlapSphere(transform.position, 2);
@@ -17,7 +17,7 @@ public class DialogueTrigger : MonoBehaviour
             GameObject curr = null;
             foreach (Collider c in objects)
             {
-                if (c.tag == "Character" && c.gameObject.name != SceneConstants.Possessable[SceneConstants.currentPossession])
+                if (c.tag == "Character" && c.gameObject.GetComponent<playerAttributes>().CharName != SceneConstants.Possessable[SceneConstants.currentPossession])
                 {
                     if (curr == null)
                     {
@@ -47,17 +47,24 @@ public class DialogueTrigger : MonoBehaviour
                 if (curr.GetComponent<playerAttributes>().IsConverted)
                 {
                     path = "Dialogue/" + SceneConstants.Possessable[SceneConstants.currentPossession] + "/" +
-                    SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + curr.name + "/Post";
+                    SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + curr.GetComponent<playerAttributes>().CharName + "/Post";
                 }
                 else
                 {
                     path = "Dialogue/" + SceneConstants.Possessable[SceneConstants.currentPossession] + "/" +
-                    SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + curr.name + "/Pre";
+                    SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + curr.GetComponent<playerAttributes>().CharName + "/Pre";
                 }
 
                 Debug.Log(path);
                 DialogueChannel c = (DialogueChannel)Resources.Load("Dialogue/DialogueChannel");
                 SceneConstants.SceneDiaUI.GetComponentInChildren<UnityEngine.UI.Button>().onClick.AddListener(delegate { c.RaiseRequestDialogue((Dialogue)Resources.Load(path)); });
+
+                // Enable buttons that can be enabled (convert, lure, 
+                foreach (UnityEngine.UI.Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<UnityEngine.UI.Button>())
+                {
+                    if (button.name != "TalkButton")
+                        button.interactable = false;
+                }
 
                 SceneConstants.SceneDiaUI.SetActive(true);
             }

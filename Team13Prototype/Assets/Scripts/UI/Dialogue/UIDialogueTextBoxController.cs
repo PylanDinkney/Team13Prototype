@@ -44,6 +44,10 @@ public class UIDialogueTextBoxController : MonoBehaviour, DialogueNodeVisitor
     {
         gameObject.SetActive(true);
         SceneConstants.InConversation = true;
+        foreach (UnityEngine.UI.Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<UnityEngine.UI.Button>())
+        {
+            button.interactable = false;
+        }
 
         m_DialogueText.text = node.DialogueLine.Text;
 
@@ -55,6 +59,11 @@ public class UIDialogueTextBoxController : MonoBehaviour, DialogueNodeVisitor
         m_NextNode = null;
         m_ListenToInput = false;
         SceneConstants.InConversation = false;
+        foreach (UnityEngine.UI.Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<UnityEngine.UI.Button>())
+        {
+            if (button.name == "TalkButton")
+                button.interactable = true;
+        }
 
         foreach (Transform child in m_ChoicesBoxTransform)
         {

@@ -37,7 +37,7 @@ public class CharacterControls : MonoBehaviour
                 playerVelocity.y = 0f;
             }
 
-            if (SceneConstants.Possessable[SceneConstants.currentPossession] == gameObject.name)
+            if (SceneConstants.Possessable[SceneConstants.currentPossession] == gameObject.GetComponent<playerAttributes>().CharName)
             {
                 Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
                 controller.Move(move * Time.deltaTime * playerSpeed);

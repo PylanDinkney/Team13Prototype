@@ -14,22 +14,26 @@ public class PickupObject : MonoBehaviour
     void Update(){
         if(Input.GetKeyDown(KeyCode.C) && inRange == true){
             Debug.Log("Picked up item!");
-            GameObject player = GameObject.Find(SceneConstants.Possessable[SceneConstants.currentPossession]);
-            playerAttributes playerAttributes = player.gameObject.GetComponent<playerAttributes>();
-            playerAttributes.Item = item;
+            foreach(GameObject player in GameObject.FindGameObjectsWithTag("Character"))
+            {
+                if (player.GetComponent<playerAttributes>().CharName == SceneConstants.Possessable[SceneConstants.currentPossession])
+                {
+                    player.gameObject.GetComponent<playerAttributes>().Item = item;
+                }
+            }
             Destroy(gameObject);
         } 
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == SceneConstants.Possessable[SceneConstants.currentPossession]){
+        if(other.gameObject.GetComponent<playerAttributes>().CharName == SceneConstants.Possessable[SceneConstants.currentPossession]){
             inRange = true;
         }
     }
 
     void OnTriggerExit(Collider other){
-        if(other.gameObject.name == SceneConstants.Possessable[SceneConstants.currentPossession]){
+        if(other.gameObject.GetComponent<playerAttributes>().CharName == SceneConstants.Possessable[SceneConstants.currentPossession]){
             inRange = false;
         }
     }

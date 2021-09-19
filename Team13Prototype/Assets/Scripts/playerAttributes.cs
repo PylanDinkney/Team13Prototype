@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class playerAttributes : MonoBehaviour
 {
-    public string Name;
-    public int ConversionRate; 
-    public string Type;
+    public string CharName;
+    public int ConversionThreshold;
+    public string Trait;
+    public string TraitWeakness;
     public string Item;
     public string ItemWeakness;
     public bool IsConverted;
     public string Greeting;
+    public string LureChar;
 }

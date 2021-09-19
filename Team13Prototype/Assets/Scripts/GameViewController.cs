@@ -9,6 +9,11 @@ public class GameViewController : MonoBehaviour
         SceneConstants.Possessable = GetSceneCharacters();
         SceneConstants.currentPossession = 0;
         SceneConstants.SceneDiaUI = GameObject.Find("DialogueUI");
+        foreach (UnityEngine.UI.Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<UnityEngine.UI.Button>())
+        {
+            if (button.name != "TalkButton")
+                button.interactable = false;
+        }
         SceneConstants.SceneDiaUI.SetActive(false);
         SceneConstants.InDialouge = false;
         SceneConstants.InConversation = false;
@@ -20,7 +25,7 @@ public class GameViewController : MonoBehaviour
     {
         List<string> temp = new List<string>();
         foreach (GameObject c in GameObject.FindGameObjectsWithTag("Character"))
-            temp.Add(c.name);
+            temp.Add(c.GetComponent<playerAttributes>().CharName);
         return temp;
     }
 }

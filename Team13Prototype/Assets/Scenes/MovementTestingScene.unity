@@ -2177,12 +2177,24 @@ PrefabInstance:
       value: B
       objectReference: {fileID: 0}
     - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
+      propertyPath: CharName
+      value: CashierTom
+      objectReference: {fileID: 0}
+    - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
+      propertyPath: Greeting
+      value: Hello! Welcome to the store!
+      objectReference: {fileID: 0}
+    - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: IsConverted
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: itemWeakness
       value: none
+      objectReference: {fileID: 0}
+    - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
+      propertyPath: ConversionThreshold
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: PreConversionGreeting
@@ -2879,6 +2891,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
+      propertyPath: Name
+      value: Summoner
+      objectReference: {fileID: 0}
+    - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: item
       value: none
       objectReference: {fileID: 0}
@@ -2891,12 +2907,32 @@ PrefabInstance:
       value: A
       objectReference: {fileID: 0}
     - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
+      propertyPath: Trait
+      value: Ambitious
+      objectReference: {fileID: 0}
+    - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
+      propertyPath: CharName
+      value: Summoner
+      objectReference: {fileID: 0}
+    - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
+      propertyPath: Greeting
+      value: Hi welcome to Denny's!
+      objectReference: {fileID: 0}
+    - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: IsConverted
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: itemWeakness
       value: none
+      objectReference: {fileID: 0}
+    - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
+      propertyPath: TraitWeakness
+      value: Obidient
+      objectReference: {fileID: 0}
+    - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
+      propertyPath: ConversionThreshold
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 15788285149280655, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
