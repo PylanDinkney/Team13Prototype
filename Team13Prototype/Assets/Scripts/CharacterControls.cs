@@ -54,9 +54,9 @@ public class CharacterControls : MonoBehaviour
             //Switching Bodies
             if ((Input.GetKeyDown(SwitchBodiesKey) || Input.GetKeyDown(SwitchBodiesKeyBack)) && keyIsDown == false)
             {
-                keyIsDown = true;
                 if (SceneConstants.Possessable.Count >= 2) //if there is a body to switch to
                 {
+                    keyIsDown = true;
                     if (Input.GetKeyDown(SwitchBodiesKey)) //switch to next body
                     {
                         SceneConstants.currentPossession++;
@@ -71,6 +71,8 @@ public class CharacterControls : MonoBehaviour
                         SceneConstants.currentPossession = 0;
                     else if (SceneConstants.currentPossession < 0)
                         SceneConstants.currentPossession = SceneConstants.Possessable.Count - 1;
+                    Debug.Log(SceneConstants.Possessable[SceneConstants.currentPossession]);
+                    GameObject.Find("Main Camera").GetComponent<CameraFollow>().target = GameObject.Find(SceneConstants.Possessable[SceneConstants.currentPossession]).transform;
                 }
             }//key up, reset boolean flags
             else if (Input.GetKeyUp(SwitchBodiesKey) && keyIsDown == true && eWentDown == true)
