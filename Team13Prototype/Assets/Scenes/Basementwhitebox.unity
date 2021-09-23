@@ -3315,8 +3315,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1393773497}
-  distance: 12
-  height: 7
+  distance: 30
+  height: 20
   heightDamping: 2
   rotationDamping: 3
 --- !u!81 &824064860
@@ -3352,7 +3352,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 20
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
