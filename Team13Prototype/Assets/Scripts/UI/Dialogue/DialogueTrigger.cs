@@ -65,7 +65,7 @@ public class DialogueTrigger : MonoBehaviour
                     if (button.name == "ConvertButton")
                     {
                         if (!SceneConstants.otherAttr.IsConverted)
-                        {
+                        { 
                             int level = 0;
                             if (SceneConstants.currAttr.Item == SceneConstants.otherAttr.ItemWeakness)
                                 level += 2;
@@ -75,7 +75,7 @@ public class DialogueTrigger : MonoBehaviour
                                 level -= 1;
                             else if (SceneConstants.currAttr.Trait == SceneConstants.otherAttr.TraitWeakness)
                                 level += 2;
-
+                            DrawConversionBar(level, SceneConstants.otherAttr.ConversionThreshold - level);
                             if (level >= SceneConstants.otherAttr.ConversionThreshold)
                                 button.interactable = true;
                         }
@@ -127,5 +127,8 @@ public class DialogueTrigger : MonoBehaviour
 
             SceneConstants.SceneDiaUI.SetActive(false);
         }
+    }
+    private void DrawConversionBar(int filled,int unfilled) { 
+        
     }
 }
