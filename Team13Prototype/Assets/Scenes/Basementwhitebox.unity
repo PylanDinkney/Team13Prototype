@@ -8026,7 +8026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: Greeting
-      value: Hi welcome to Denny's!
+      value: What's new my fellow believer?
       objectReference: {fileID: 0}
     - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: IsConverted

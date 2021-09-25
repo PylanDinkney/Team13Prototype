@@ -60,44 +60,31 @@ public class UIDialogueTextBoxController : MonoBehaviour, DialogueNodeVisitor
         m_ListenToInput = false;
         SceneConstants.InConversation = false;
 
-        GameObject curr = null;
-        GameObject other = null;
-        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Character"))
-        {
-            if (player.GetComponent<playerAttributes>().CharName == SceneConstants.Possessable[SceneConstants.currentPossession])
-                curr = player;
-            else if (player == SceneConstants.DiaCharacter)
-                other = player;
-        }
-
-        playerAttributes currAttr = curr.GetComponent<playerAttributes>();
-        playerAttributes otherAttr = other.GetComponent<playerAttributes>();
-
         foreach (UnityEngine.UI.Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<UnityEngine.UI.Button>())
         {
             if (button.name == "TalkButton")
                 button.interactable = true;
             if (button.name == "ConvertButton")
             {
-                if (!otherAttr.IsConverted)
+                if (!SceneConstants.otherAttr.IsConverted)
                 {
                     int level = 0;
-                    if (currAttr.Item == otherAttr.ItemWeakness)
+                    if (SceneConstants.currAttr.Item == SceneConstants.otherAttr.ItemWeakness)
                         level += 2;
-                    if (currAttr.Trait == otherAttr.Trait)
+                    if (SceneConstants.currAttr.Trait == SceneConstants.otherAttr.Trait)
                         level += 1;
-                    else if (currAttr.TraitWeakness == otherAttr.Trait)
+                    else if (SceneConstants.currAttr.TraitWeakness == SceneConstants.otherAttr.Trait)
                         level -= 1;
-                    else if (currAttr.Trait == otherAttr.TraitWeakness)
+                    else if (SceneConstants.currAttr.Trait == SceneConstants.otherAttr.TraitWeakness)
                         level += 2;
 
-                    if (level >= otherAttr.ConversionThreshold)
+                    if (level >= SceneConstants.otherAttr.ConversionThreshold)
                         button.interactable = true;
                 }
             }
             if (button.name == "GiveButton")
             {
-                if (otherAttr.IsConverted && currAttr.Item != "" && otherAttr.Item == "")
+                if (SceneConstants.otherAttr.IsConverted && SceneConstants.currAttr.Item != "" && SceneConstants.otherAttr.Item == "")
                     button.interactable = true;
             }
         }
@@ -114,6 +101,20 @@ public class UIDialogueTextBoxController : MonoBehaviour, DialogueNodeVisitor
     {
         m_ListenToInput = true;
         m_NextNode = node.NextNode;
+
+        if (node.Item != "")
+        {
+            SceneConstants.currAttr.Item = node.Item;
+
+            foreach (TextMeshProUGUI text in SceneConstants.SceneDiaUI.GetComponentsInChildren<TextMeshProUGUI>())
+            {
+                if (text.name == "CharacterItem")
+                {
+                    text.text = "Item: " + node.Item;
+                    break;
+                }
+            }
+        }
     }
 
     public void Visit(ChoiceDialogueNode node)
@@ -124,6 +125,20 @@ public class UIDialogueTextBoxController : MonoBehaviour, DialogueNodeVisitor
         {
             UIDialogueChoiceController newChoice = Instantiate(m_ChoiceControllerPrefab, m_ChoicesBoxTransform);
             newChoice.Choice = choice;
+        }
+
+        if (node.Item != "")
+        {
+            SceneConstants.currAttr.Item = node.Item;
+
+            foreach (TextMeshProUGUI text in SceneConstants.SceneDiaUI.GetComponentsInChildren<TextMeshProUGUI>())
+            { 
+                if (text.name == "CharacterItem")
+                {
+                    text.text = "Item: " + node.Item;
+                    break;
+                }
+            }
         }
     }
 }

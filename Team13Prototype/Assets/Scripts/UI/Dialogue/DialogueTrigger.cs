@@ -41,28 +41,18 @@ public class DialogueTrigger : MonoBehaviour
             {
                 // Find path to dialogue and add button listener for Dialogue Channel request to start dialogue with found dialogue
                 SceneConstants.InDialouge = true;
-                SceneConstants.DiaCharacter = other;
-
-                playerAttributes otherAttr = other.GetComponent<playerAttributes>();
-
-                GameObject curr = null;
-                foreach (GameObject player in GameObject.FindGameObjectsWithTag("Character"))
-                {
-                    if (player.GetComponent<playerAttributes>().CharName == SceneConstants.Possessable[SceneConstants.currentPossession])
-                        curr = player;
-                }
-                playerAttributes currAttr = curr.GetComponent<playerAttributes>();
+                SceneConstants.otherAttr = other.GetComponent<playerAttributes>();
 
                 string path = "";
-                if (otherAttr.IsConverted)
+                if (SceneConstants.otherAttr.IsConverted)
                 {
                     path = "Dialogue/" + SceneConstants.Possessable[SceneConstants.currentPossession] + "/" +
-                    SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + otherAttr.CharName + "/Post";
+                    SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + SceneConstants.otherAttr.CharName + "/Post";
                 }
                 else
                 {
                     path = "Dialogue/" + SceneConstants.Possessable[SceneConstants.currentPossession] + "/" +
-                    SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + otherAttr.CharName + "/Pre";
+                    SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + SceneConstants.otherAttr.CharName + "/Pre";
                 }
 
                 DialogueChannel c = (DialogueChannel)Resources.Load("Dialogue/DialogueChannel");
@@ -74,26 +64,26 @@ public class DialogueTrigger : MonoBehaviour
                 {
                     if (button.name == "ConvertButton")
                     {
-                        if (!otherAttr.IsConverted)
+                        if (!SceneConstants.otherAttr.IsConverted)
                         {
                             int level = 0;
-                            if (currAttr.Item == otherAttr.ItemWeakness)
+                            if (SceneConstants.currAttr.Item == SceneConstants.otherAttr.ItemWeakness)
                                 level += 2;
-                            if (currAttr.Trait == otherAttr.Trait)
+                            if (SceneConstants.currAttr.Trait == SceneConstants.otherAttr.Trait)
                                 level += 1;
-                            else if (currAttr.TraitWeakness == otherAttr.Trait)
+                            else if (SceneConstants.currAttr.TraitWeakness == SceneConstants.otherAttr.Trait)
                                 level -= 1;
-                            else if (currAttr.Trait == otherAttr.TraitWeakness)
+                            else if (SceneConstants.currAttr.Trait == SceneConstants.otherAttr.TraitWeakness)
                                 level += 2;
 
-                            if (level >= otherAttr.ConversionThreshold)
+                            if (level >= SceneConstants.otherAttr.ConversionThreshold)
                                 button.interactable = true;
                         }
                         
                     }
                     if (button.name == "GiveButton")
                     {
-                        if (otherAttr.IsConverted && currAttr.Item != "" && otherAttr.Item == "")
+                        if (SceneConstants.otherAttr.IsConverted && SceneConstants.currAttr.Item != "" && SceneConstants.otherAttr.Item == "")
                             button.interactable = true;
                     }
                 }
@@ -102,13 +92,13 @@ public class DialogueTrigger : MonoBehaviour
                 foreach (TextMeshProUGUI text in SceneConstants.SceneDiaUI.GetComponentsInChildren<TextMeshProUGUI>())
                 {
                     if (text.name == "DialogueText")
-                        text.text = otherAttr.Greeting;
+                        text.text = SceneConstants.otherAttr.Greeting;
                     if (text.name == "CharacterName")
-                        text.text = otherAttr.CharName;
+                        text.text = SceneConstants.otherAttr.CharName;
                     if (text.name == "CharacterTrait")
-                        text.text = otherAttr.Trait;
+                        text.text = SceneConstants.otherAttr.Trait;
                     if (text.name == "CharacterItem")
-                        text.text = "Item: " + currAttr.Item;
+                        text.text = "Item: " + SceneConstants.currAttr.Item;
                 }
 
                 SceneConstants.SceneDiaUI.SetActive(true);
@@ -118,7 +108,7 @@ public class DialogueTrigger : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && SceneConstants.InDialouge && !SceneConstants.InConversation)
         {
             SceneConstants.InDialouge = false;
-            SceneConstants.DiaCharacter = null;
+            SceneConstants.otherAttr = null;
 
             
             foreach (UnityEngine.UI.Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<UnityEngine.UI.Button>())
@@ -129,7 +119,10 @@ public class DialogueTrigger : MonoBehaviour
             foreach (TextMeshProUGUI text in SceneConstants.SceneDiaUI.GetComponentsInChildren<TextMeshProUGUI>())
             {
                 if (text.name == "DialogueText")
+                {
                     text.text = "";
+                    break;
+                }   
             }
 
             SceneConstants.SceneDiaUI.SetActive(false);

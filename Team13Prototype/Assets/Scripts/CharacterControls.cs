@@ -72,7 +72,15 @@ public class CharacterControls : MonoBehaviour
                     else if (SceneConstants.currentPossession < 0)
                         SceneConstants.currentPossession = SceneConstants.Possessable.Count - 1;
                     Debug.Log(SceneConstants.Possessable[SceneConstants.currentPossession]);
-                    GameObject.Find("Main Camera").GetComponent<CameraFollow>().target = GameObject.Find(SceneConstants.Possessable[SceneConstants.currentPossession]).transform;
+                    foreach (GameObject character in GameObject.FindGameObjectsWithTag("Character"))
+                    {
+                        if (character.GetComponent<playerAttributes>().CharName == SceneConstants.Possessable[SceneConstants.currentPossession])
+                        {
+                            GameObject.Find("Main Camera").GetComponent<CameraFollow>().target = character.transform;
+                            SceneConstants.currAttr = character.GetComponent<playerAttributes>();
+                            break;
+                        }
+                    }
                 }
             }//key up, reset boolean flags
             else if (Input.GetKeyUp(SwitchBodiesKey) && keyIsDown == true && eWentDown == true)

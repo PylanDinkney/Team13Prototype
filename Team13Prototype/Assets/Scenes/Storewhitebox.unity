@@ -6555,7 +6555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: Greeting
-      value: Hi welcome to Denny's!
+      value: What's new my fellow believer?
       objectReference: {fileID: 0}
     - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: IsConverted
@@ -11288,7 +11288,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -749.7499, y: -76.51101}
-  m_SizeDelta: {x: 300, y: 72.978}
+  m_SizeDelta: {x: 400, y: 72.978}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1477627707
 MonoBehaviour:

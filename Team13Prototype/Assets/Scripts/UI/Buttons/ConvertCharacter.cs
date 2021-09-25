@@ -7,19 +7,8 @@ public class ConvertCharacter : MonoBehaviour
 {
     public void ConvertPlayer()
     {
-        playerAttributes otherAttr = SceneConstants.DiaCharacter.GetComponent<playerAttributes>();
-
-        GameObject curr = null;
-        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Character"))
-        {
-            if (player.GetComponent<playerAttributes>().CharName == SceneConstants.Possessable[SceneConstants.currentPossession])
-                curr = player;
-        }
-
-        playerAttributes currAttr = SceneConstants.DiaCharacter.GetComponent<playerAttributes>();
-
-        otherAttr.IsConverted = true;
-        SceneConstants.Possessable.Add(otherAttr.CharName);
+        SceneConstants.otherAttr.IsConverted = true;
+        SceneConstants.Possessable.Add(SceneConstants.otherAttr.CharName);
 
         foreach (UnityEngine.UI.Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<UnityEngine.UI.Button>())
         {
@@ -27,8 +16,8 @@ public class ConvertCharacter : MonoBehaviour
                 button.interactable = false;
             else if (button.name == "GiveButton")
             {
-                if (otherAttr.IsConverted && currAttr.Item != "" && otherAttr.Item == "")
-                    button.interactable = true;
+                if (SceneConstants.otherAttr.IsConverted && SceneConstants.currAttr.Item != "" && SceneConstants.otherAttr.Item == "")
+                    button.interactable = true;    
             }
         }
 
@@ -36,13 +25,13 @@ public class ConvertCharacter : MonoBehaviour
         {
             if (text.name == "DialogueText")
             {
-                text.text = "** " + otherAttr.CharName + " has been converted and is now controllable **";
+                text.text = "** " + SceneConstants.otherAttr.CharName + " has been converted and is now controllable **";
                 break;
             }
         }
 
         string path = path = "Dialogue/" + SceneConstants.Possessable[SceneConstants.currentPossession] + "/" +
-            SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + otherAttr.CharName + "/Post"; ;
+            SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + SceneConstants.otherAttr.CharName + "/Post"; ;
 
         SceneConstants.SceneDiaUI.GetComponentInChildren<UnityEngine.UI.Button>().onClick.RemoveAllListeners();
         DialogueChannel c = (DialogueChannel)Resources.Load("Dialogue/DialogueChannel");

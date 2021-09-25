@@ -7,31 +7,17 @@ public class GiveItem : MonoBehaviour
 {
     public void Give()
     {
-        playerAttributes otherAttr = SceneConstants.DiaCharacter.GetComponent<playerAttributes>();
-
-        GameObject curr = null;
-        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Character"))
-        {
-            if (player.GetComponent<playerAttributes>().CharName == SceneConstants.Possessable[SceneConstants.currentPossession])
-            {
-                curr = player;
-                break;
-            }
-        }
-
-        playerAttributes currAttr = curr.GetComponent<playerAttributes>();
-
         foreach (TextMeshProUGUI text in SceneConstants.SceneDiaUI.GetComponentsInChildren<TextMeshProUGUI>())
         {
             if (text.name == "DialogueText")
             {
-                text.text = "** " + currAttr.Item + " has been given to " + otherAttr.CharName + " **";
+                text.text = "** " + SceneConstants.currAttr.Item + " has been given to " + SceneConstants.otherAttr.CharName + " **";
                 break;
             }
         }
 
-        otherAttr.Item = currAttr.Item;
-        currAttr.Item = "";
+        SceneConstants.otherAttr.Item = SceneConstants.currAttr.Item;
+        SceneConstants.currAttr.Item = "";
 
         foreach (UnityEngine.UI.Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<UnityEngine.UI.Button>())
         {

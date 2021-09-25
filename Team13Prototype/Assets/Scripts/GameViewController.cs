@@ -17,17 +17,25 @@ public class GameViewController : MonoBehaviour
         SceneConstants.SceneDiaUI.SetActive(false);
         SceneConstants.InDialouge = false;
         SceneConstants.InConversation = false;
-        SceneConstants.DiaCharacter = null;
+        SceneConstants.otherAttr = null;
     }
 
     //Gets names of all game objecst that are characters (have the "Character" tag)
     List<string> GetSceneCharacters()
     {
+        bool first = false;
         List<string> temp = new List<string>();
         foreach (GameObject c in GameObject.FindGameObjectsWithTag("Character"))
         {
             if (c.GetComponent<playerAttributes>().IsConverted)
+            {
                 temp.Add(c.GetComponent<playerAttributes>().CharName);
+                if (!first)
+                {
+                    first = true;
+                    SceneConstants.currAttr = c.GetComponent<playerAttributes>();
+                }
+            }
         }
         return temp;
     }
