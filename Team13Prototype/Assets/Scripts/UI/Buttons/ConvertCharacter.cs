@@ -30,6 +30,21 @@ public class ConvertCharacter : MonoBehaviour
             }
         }
 
+        Sprite converted = Resources.Load<Sprite>("UIAssets/light3");
+        for (int i = 0; i < 6; i++)
+        {
+            if (i < SceneConstants.otherAttr.ConversionThreshold)//if more unfilled conversion bars needed add one
+            {
+                SceneConstants.conversionBar[i].enabled = true;
+                SceneConstants.conversionBar[i].sprite = converted;
+            }
+            else
+            {//make sure the rest are invisible
+                SceneConstants.conversionBar[i].enabled = false;
+            }
+
+        }
+
         string path = path = "Dialogue/" + SceneConstants.Possessable[SceneConstants.currentPossession] + "/" +
             SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + SceneConstants.otherAttr.CharName + "/Post"; ;
 

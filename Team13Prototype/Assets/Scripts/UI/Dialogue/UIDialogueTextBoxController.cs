@@ -69,8 +69,11 @@ public class UIDialogueTextBoxController : MonoBehaviour, DialogueNodeVisitor
                 if (!SceneConstants.otherAttr.IsConverted)
                 {
                     int level = 0;
-                    if (SceneConstants.currAttr.Item == SceneConstants.otherAttr.ItemWeakness)
-                        level += 2;
+                    if (SceneConstants.currAttr.Item != null)
+                    {
+                        if (SceneConstants.currAttr.Item == SceneConstants.otherAttr.ItemWeakness)
+                            level += 2;
+                    }
                     if (SceneConstants.currAttr.Trait == SceneConstants.otherAttr.Trait)
                         level += 1;
                     else if (SceneConstants.currAttr.TraitWeakness == SceneConstants.otherAttr.Trait)

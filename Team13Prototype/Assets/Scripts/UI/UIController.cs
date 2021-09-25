@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class DialogueTrigger : MonoBehaviour
+public class UIController : MonoBehaviour
 {
     void Update()
     {
@@ -67,15 +67,17 @@ public class DialogueTrigger : MonoBehaviour
                         if (!SceneConstants.otherAttr.IsConverted)
                         { 
                             int level = 0;
-                            if (SceneConstants.currAttr.Item == SceneConstants.otherAttr.ItemWeakness)
-                                level += 2;
+                            if (SceneConstants.currAttr.Item != "")
+                            {
+                                if (SceneConstants.currAttr.Item == SceneConstants.otherAttr.ItemWeakness)
+                                    level += 2;
+                            }
                             if (SceneConstants.currAttr.Trait == SceneConstants.otherAttr.Trait)
                                 level += 1;
                             else if (SceneConstants.currAttr.TraitWeakness == SceneConstants.otherAttr.Trait)
                                 level -= 1;
                             else if (SceneConstants.currAttr.Trait == SceneConstants.otherAttr.TraitWeakness)
                                 level += 2;
-                            DrawConversionBar(level, SceneConstants.otherAttr.ConversionThreshold - level);
                             if (level >= SceneConstants.otherAttr.ConversionThreshold)
                                 button.interactable = true;
                         }
@@ -100,6 +102,8 @@ public class DialogueTrigger : MonoBehaviour
                     if (text.name == "CharacterItem")
                         text.text = "Item: " + SceneConstants.currAttr.Item;
                 }
+
+                DrawConversionBar();
 
                 SceneConstants.SceneDiaUI.SetActive(true);
             }
@@ -128,25 +132,65 @@ public class DialogueTrigger : MonoBehaviour
             SceneConstants.SceneDiaUI.SetActive(false);
         }
     }
-    private void DrawConversionBar(int filled,int unfilled) {
+    private void DrawConversionBar() {
         Sprite on = Resources.Load<Sprite>("UIAssets/light2");
-        Sprite off =Resources.Load<Sprite>("UIAssets/light");
-        for (int i = 0; i < 6; i++)
-        {
-            if (i < filled)//if more filled conversion bars needed add one
-            {
-                SceneConstants.conversionBar[i].enabled = true;
-                SceneConstants.conversionBar[i].sprite = on;
-            }
-            else if (i < unfilled)//if more unfilled conversion bars needed add one
-            {
-                SceneConstants.conversionBar[i].enabled = true;
-                SceneConstants.conversionBar[i].sprite = off;
-            }
-            else {//make sure the rest are invisible
-                SceneConstants.conversionBar[i].enabled = false;
-            }
+        Sprite off = Resources.Load<Sprite>("UIAssets/light");
+        Sprite converted = Resources.Load<Sprite>("UIAssets/light3");
 
+        int level = 0;
+        if (SceneConstants.currAttr.Item != "")
+        {
+            if (SceneConstants.currAttr.Item == SceneConstants.otherAttr.ItemWeakness)
+                level += 2;
+        }
+        if (SceneConstants.currAttr.Trait == SceneConstants.otherAttr.Trait)
+            level += 1;
+        else if (SceneConstants.currAttr.TraitWeakness == SceneConstants.otherAttr.Trait)
+            level -= 1;
+        else if (SceneConstants.currAttr.Trait == SceneConstants.otherAttr.TraitWeakness)
+            level += 2;
+
+        if (level >= SceneConstants.otherAttr.ConversionThreshold)
+            level = SceneConstants.otherAttr.ConversionThreshold;
+
+        int unfilled = SceneConstants.otherAttr.ConversionThreshold - level;
+
+        if (!SceneConstants.otherAttr.IsConverted)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                if (i < level)//if more filled conversion bars needed add one
+                {
+                    SceneConstants.conversionBar[i].enabled = true;
+                    SceneConstants.conversionBar[i].sprite = on;
+                }
+                else if (i < level + unfilled)//if more unfilled conversion bars needed add one
+                {
+                    SceneConstants.conversionBar[i].enabled = true;
+                    SceneConstants.conversionBar[i].sprite = off;
+                }
+                else
+                {//make sure the rest are invisible
+                    SceneConstants.conversionBar[i].enabled = false;
+                }
+
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                if (i < level + unfilled)//if more unfilled conversion bars needed add one
+                {
+                    SceneConstants.conversionBar[i].enabled = true;
+                    SceneConstants.conversionBar[i].sprite = converted;
+                }
+                else
+                {//make sure the rest are invisible
+                    SceneConstants.conversionBar[i].enabled = false;
+                }
+
+            }
         }
     }
 }
