@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class DialogueTrigger : MonoBehaviour
 {
-
     void Update()
     {
         if (!SceneConstants.InDialouge && Input.GetKeyDown(KeyCode.F) && this.gameObject.GetComponent<playerAttributes>().CharName == SceneConstants.Possessable[SceneConstants.currentPossession])
@@ -128,7 +128,25 @@ public class DialogueTrigger : MonoBehaviour
             SceneConstants.SceneDiaUI.SetActive(false);
         }
     }
-    private void DrawConversionBar(int filled,int unfilled) { 
-        
+    private void DrawConversionBar(int filled,int unfilled) {
+        Sprite on = Resources.Load<Sprite>("UIAssets/light2");
+        Sprite off =Resources.Load<Sprite>("UIAssets/light");
+        for (int i = 0; i < 6; i++)
+        {
+            if (i < filled)//if more filled conversion bars needed add one
+            {
+                SceneConstants.conversionBar[i].enabled = true;
+                SceneConstants.conversionBar[i].sprite = on;
+            }
+            else if (i < unfilled)//if more unfilled conversion bars needed add one
+            {
+                SceneConstants.conversionBar[i].enabled = true;
+                SceneConstants.conversionBar[i].sprite = off;
+            }
+            else {//make sure the rest are invisible
+                SceneConstants.conversionBar[i].enabled = false;
+            }
+
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SceneConstants : MonoBehaviour
 {
@@ -11,5 +12,5 @@ public class SceneConstants : MonoBehaviour
     public static GameObject SceneDiaUI;
     public static bool InDialouge;
     public static bool InConversation;
-    public static GameObject[] conversionBar;
+    public static List<Image> conversionBar;
 }

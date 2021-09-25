@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameViewController : MonoBehaviour
 {
@@ -13,6 +14,15 @@ public class GameViewController : MonoBehaviour
         {
             if (button.name != "TalkButton")
                 button.interactable = false;
+        }
+        SceneConstants.conversionBar = new List<Image>();
+        foreach (Image bar in SceneConstants.SceneDiaUI.GetComponentsInChildren<Image>())
+        {
+            if (bar.name.Contains("conversion"))
+            {
+                SceneConstants.conversionBar.Add(bar);
+            }
+
         }
         SceneConstants.SceneDiaUI.SetActive(false);
         SceneConstants.InDialouge = false;
