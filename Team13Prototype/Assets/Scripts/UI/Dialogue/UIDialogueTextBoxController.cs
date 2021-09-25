@@ -102,7 +102,7 @@ public class UIDialogueTextBoxController : MonoBehaviour, DialogueNodeVisitor
         m_ListenToInput = true;
         m_NextNode = node.NextNode;
 
-        if (node.Item != "")
+        if (node.Item != null)
         {
             SceneConstants.currAttr.Item = node.Item;
 
@@ -110,7 +110,7 @@ public class UIDialogueTextBoxController : MonoBehaviour, DialogueNodeVisitor
             {
                 if (text.name == "CharacterItem")
                 {
-                    text.text = "Item: " + node.Item;
+                    text.text = "Item: " + SceneConstants.currAttr.Item;
                     break;
                 }
             }
@@ -127,7 +127,7 @@ public class UIDialogueTextBoxController : MonoBehaviour, DialogueNodeVisitor
             newChoice.Choice = choice;
         }
 
-        if (node.Item != "")
+        if (node.Item != null)
         {
             SceneConstants.currAttr.Item = node.Item;
 
@@ -135,7 +135,7 @@ public class UIDialogueTextBoxController : MonoBehaviour, DialogueNodeVisitor
             { 
                 if (text.name == "CharacterItem")
                 {
-                    text.text = "Item: " + node.Item;
+                    text.text = "Item: " + SceneConstants.currAttr.Item;
                     break;
                 }
             }
