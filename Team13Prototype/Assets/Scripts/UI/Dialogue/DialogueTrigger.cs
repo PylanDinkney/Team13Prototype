@@ -75,7 +75,8 @@ public class DialogueTrigger : MonoBehaviour
                                 level -= 1;
                             else if (SceneConstants.currAttr.Trait == SceneConstants.otherAttr.TraitWeakness)
                                 level += 2;
-                            DrawConversionBar(level, SceneConstants.otherAttr.ConversionThreshold - level);
+                            
+                            DrawConversionBar(level, SceneConstants.otherAttr.ConversionThreshold - level); //TODO make sure that the number of filled isnt greater than threshold
                             if (level >= SceneConstants.otherAttr.ConversionThreshold)
                                 button.interactable = true;
                         }
