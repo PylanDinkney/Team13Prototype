@@ -6,6 +6,13 @@ using UnityEngine.UI;
 
 public class ConvertCharacter : MonoBehaviour
 {
+    public AudioSource conversionSound;
+
+    void Start(){
+        GameObject tempSound = GameObject.Find("ConversionSound");
+        conversionSound = tempSound.GetComponent<AudioSource>();
+    }
+
     public void ConvertPlayer()
     {
         SceneConstants.otherAttr.IsConverted = true;
@@ -46,6 +53,8 @@ public class ConvertCharacter : MonoBehaviour
             }
 
         }
+
+        conversionSound.Play();
 
         AddDialogue();
         UpdateWheel();
