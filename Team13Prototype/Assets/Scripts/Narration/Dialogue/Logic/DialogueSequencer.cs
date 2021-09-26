@@ -1,3 +1,5 @@
+using System;
+
 public class DialogueException : System.Exception
 {
     public DialogueException(string message)
@@ -25,7 +27,14 @@ public class DialogueSequencer
         {
             m_CurrentDialogue = dialogue;
             OnDialogueStart?.Invoke(m_CurrentDialogue);
-            StartDialogueNode(dialogue.FirstNode);
+            try
+            {
+                StartDialogueNode(dialogue.FirstNode);
+            }
+            catch (NullReferenceException)
+            {
+                // Other character has no set dialogue
+            }
         }
         else
         {

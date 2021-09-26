@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52e7b839fd4f614428abea4398685dc6, type: 3}
-  m_Name: PreNode3
+  m_Script: {fileID: 11500000, guid: 9c3e04482476ffe4d9fc636bc448bbfd, type: 3}
+  m_Name: PreLine1
   m_EditorClassIdentifier: 
-  m_Item: 
-  m_DialogueLine: {fileID: 11400000, guid: 18b7bc18c4dcaf84d8086eb1469bcd2b, type: 2}
-  m_NextNode: {fileID: 0}
+  m_Text: What do you need?

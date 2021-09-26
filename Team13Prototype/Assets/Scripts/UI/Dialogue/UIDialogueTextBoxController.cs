@@ -44,7 +44,7 @@ public class UIDialogueTextBoxController : MonoBehaviour, DialogueNodeVisitor
     {
         gameObject.SetActive(true);
         SceneConstants.InConversation = true;
-        foreach (UnityEngine.UI.Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<UnityEngine.UI.Button>())
+        foreach (Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<Button>())
         {
             button.interactable = false;
         }
@@ -60,7 +60,7 @@ public class UIDialogueTextBoxController : MonoBehaviour, DialogueNodeVisitor
         m_ListenToInput = false;
         SceneConstants.InConversation = false;
 
-        foreach (UnityEngine.UI.Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<UnityEngine.UI.Button>())
+        foreach (Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<Button>())
         {
             if (button.name == "TalkButton")
                 button.interactable = true;
@@ -87,7 +87,8 @@ public class UIDialogueTextBoxController : MonoBehaviour, DialogueNodeVisitor
             }
             if (button.name == "GiveButton")
             {
-                if (SceneConstants.otherAttr.IsConverted && SceneConstants.currAttr.Item != "" && SceneConstants.otherAttr.Item == "")
+                if (SceneConstants.otherAttr.IsConverted && (SceneConstants.currAttr.Item != null && SceneConstants.currAttr.Item != "")
+                    && (SceneConstants.otherAttr.Item == null || SceneConstants.otherAttr.Item == ""))
                     button.interactable = true;
             }
         }
@@ -105,7 +106,7 @@ public class UIDialogueTextBoxController : MonoBehaviour, DialogueNodeVisitor
         m_ListenToInput = true;
         m_NextNode = node.NextNode;
 
-        if (node.Item != null)
+        if ((node.Item != null && node.Item != ""))
         {
             SceneConstants.currAttr.Item = node.Item;
 
@@ -116,6 +117,12 @@ public class UIDialogueTextBoxController : MonoBehaviour, DialogueNodeVisitor
                     text.text = "Item: " + SceneConstants.currAttr.Item;
                     break;
                 }
+            }
+
+            foreach (Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<Button>())
+            {
+                if (button.name == "GiveButton")
+                    button.interactable = true;
             }
         }
     }
@@ -130,17 +137,23 @@ public class UIDialogueTextBoxController : MonoBehaviour, DialogueNodeVisitor
             newChoice.Choice = choice;
         }
 
-        if (node.Item != null)
+        if ((node.Item != null && node.Item != ""))
         {
             SceneConstants.currAttr.Item = node.Item;
 
             foreach (TextMeshProUGUI text in SceneConstants.SceneDiaUI.GetComponentsInChildren<TextMeshProUGUI>())
-            { 
+            {
                 if (text.name == "CharacterItem")
                 {
                     text.text = "Item: " + SceneConstants.currAttr.Item;
                     break;
                 }
+            }
+
+            foreach (Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<Button>())
+            {
+                if (button.name == "GiveButton")
+                    button.interactable = true;
             }
         }
     }

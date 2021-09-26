@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ConvertCharacter : MonoBehaviour
 {
@@ -16,7 +17,8 @@ public class ConvertCharacter : MonoBehaviour
                 button.interactable = false;
             else if (button.name == "GiveButton")
             {
-                if (SceneConstants.otherAttr.IsConverted && SceneConstants.currAttr.Item != "" && SceneConstants.otherAttr.Item == "")
+                if (SceneConstants.otherAttr.IsConverted && (SceneConstants.currAttr.Item != null && SceneConstants.currAttr.Item != "")
+                    && (SceneConstants.otherAttr.Item == null || SceneConstants.otherAttr.Item == ""))
                     button.interactable = true;    
             }
         }
@@ -45,11 +47,31 @@ public class ConvertCharacter : MonoBehaviour
 
         }
 
-        string path = path = "Dialogue/" + SceneConstants.Possessable[SceneConstants.currentPossession] + "/" +
-            SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + SceneConstants.otherAttr.CharName + "/Post"; ;
+        AddDialogue();
+    }
 
-        SceneConstants.SceneDiaUI.GetComponentInChildren<UnityEngine.UI.Button>().onClick.RemoveAllListeners();
+    private void AddDialogue()
+    {
+        string path = "Dialogue/" + SceneConstants.Possessable[SceneConstants.currentPossession] + "/" +
+            SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + SceneConstants.otherAttr.CharName + "/Post";
+
         DialogueChannel c = (DialogueChannel)Resources.Load("Dialogue/DialogueChannel");
-        SceneConstants.SceneDiaUI.GetComponentInChildren<UnityEngine.UI.Button>().onClick.AddListener(delegate { c.RaiseRequestDialogue((Dialogue)Resources.Load(path)); });
+        Dialogue d = (Dialogue)Resources.Load(path);
+        SceneConstants.SceneDiaUI.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
+
+        Button talk = null;
+        foreach (Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<Button>())
+        {
+            if (button.name == "TalkButton")
+                talk = button;
+        }
+
+        if (d == null)
+            talk.interactable = false;
+        else
+        {
+            SceneConstants.SceneDiaUI.GetComponentInChildren<Button>().onClick.AddListener(delegate { c.RaiseRequestDialogue(d); });
+            talk.interactable = true;
+        }
     }
 }

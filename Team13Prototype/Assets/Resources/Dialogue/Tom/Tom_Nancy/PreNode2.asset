@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52e7b839fd4f614428abea4398685dc6, type: 3}
+  m_Script: {fileID: 11500000, guid: e7a8a0cc3acd27249811cd087129b247, type: 3}
   m_Name: PreNode2
   m_EditorClassIdentifier: 
   m_Item: 
-  m_DialogueLine: {fileID: 11400000, guid: d62bff77336a3524f8725dccbdc66dff, type: 2}
-  m_NextNode: {fileID: 0}
+  m_DialogueLine: {fileID: 11400000, guid: 1e21fdde3bf38534ab0d061f8e99b98e, type: 2}
+  m_Choices:
+  - m_ChoicePreview: Can I borrow the key to his office?
+    m_ChoiceNode: {fileID: 11400000, guid: afa4a9d46fd7e3f448e0acc727ced66a, type: 2}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class UIController : MonoBehaviour
 {
@@ -43,66 +44,9 @@ public class UIController : MonoBehaviour
                 SceneConstants.InDialouge = true;
                 SceneConstants.otherAttr = other.GetComponent<playerAttributes>();
 
-                string path = "";
-                if (SceneConstants.otherAttr.IsConverted)
-                {
-                    path = "Dialogue/" + SceneConstants.Possessable[SceneConstants.currentPossession] + "/" +
-                    SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + SceneConstants.otherAttr.CharName + "/Post";
-                }
-                else
-                {
-                    path = "Dialogue/" + SceneConstants.Possessable[SceneConstants.currentPossession] + "/" +
-                    SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + SceneConstants.otherAttr.CharName + "/Pre";
-                }
-
-                DialogueChannel c = (DialogueChannel)Resources.Load("Dialogue/DialogueChannel");
-                SceneConstants.SceneDiaUI.GetComponentInChildren<UnityEngine.UI.Button>().onClick.RemoveAllListeners();
-                SceneConstants.SceneDiaUI.GetComponentInChildren<UnityEngine.UI.Button>().onClick.AddListener(delegate { c.RaiseRequestDialogue((Dialogue)Resources.Load(path)); });
-
-                // Enable buttons that can be enabled (convert, lure, give)
-                foreach (UnityEngine.UI.Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<UnityEngine.UI.Button>())
-                {
-                    if (button.name == "ConvertButton")
-                    {
-                        if (!SceneConstants.otherAttr.IsConverted)
-                        { 
-                            int level = 0;
-                            if (SceneConstants.currAttr.Item != "")
-                            {
-                                if (SceneConstants.currAttr.Item == SceneConstants.otherAttr.ItemWeakness)
-                                    level += 2;
-                            }
-                            if (SceneConstants.currAttr.Trait == SceneConstants.otherAttr.Trait)
-                                level += 1;
-                            else if (SceneConstants.currAttr.TraitWeakness == SceneConstants.otherAttr.Trait)
-                                level -= 1;
-                            else if (SceneConstants.currAttr.Trait == SceneConstants.otherAttr.TraitWeakness)
-                                level += 2;
-                            if (level >= SceneConstants.otherAttr.ConversionThreshold)
-                                button.interactable = true;
-                        }
-                        
-                    }
-                    if (button.name == "GiveButton")
-                    {
-                        if (SceneConstants.otherAttr.IsConverted && SceneConstants.currAttr.Item != "" && SceneConstants.otherAttr.Item == "")
-                            button.interactable = true;
-                    }
-                }
-
-                // Change Text components of UI
-                foreach (TextMeshProUGUI text in SceneConstants.SceneDiaUI.GetComponentsInChildren<TextMeshProUGUI>())
-                {
-                    if (text.name == "DialogueText")
-                        text.text = SceneConstants.otherAttr.Greeting;
-                    if (text.name == "CharacterName")
-                        text.text = SceneConstants.otherAttr.CharName;
-                    if (text.name == "CharacterTrait")
-                        text.text = SceneConstants.otherAttr.Trait;
-                    if (text.name == "CharacterItem")
-                        text.text = "Item: " + SceneConstants.currAttr.Item;
-                }
-
+                AddDialogue();
+                EnableButtons();
+                SetText();
                 DrawConversionBar();
 
                 SceneConstants.SceneDiaUI.SetActive(true);
@@ -115,7 +59,7 @@ public class UIController : MonoBehaviour
             SceneConstants.otherAttr = null;
 
             
-            foreach (UnityEngine.UI.Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<UnityEngine.UI.Button>())
+            foreach (Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<Button>())
             {
                 if (button.name != "TalkButton")
                     button.interactable = false;
@@ -132,6 +76,91 @@ public class UIController : MonoBehaviour
             SceneConstants.SceneDiaUI.SetActive(false);
         }
     }
+
+    private void AddDialogue()
+    {
+        string path = "";
+        if (SceneConstants.otherAttr.IsConverted)
+        {
+            path = "Dialogue/" + SceneConstants.Possessable[SceneConstants.currentPossession] + "/" +
+            SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + SceneConstants.otherAttr.CharName + "/Post";
+        }
+        else
+        {
+            path = "Dialogue/" + SceneConstants.Possessable[SceneConstants.currentPossession] + "/" +
+            SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + SceneConstants.otherAttr.CharName + "/Pre";
+        }
+
+        DialogueChannel c = (DialogueChannel)Resources.Load("Dialogue/DialogueChannel");
+        Dialogue d = (Dialogue)Resources.Load(path);
+        SceneConstants.SceneDiaUI.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
+
+        Button talk = null;
+        foreach (Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<Button>())
+        {
+            if (button.name == "TalkButton")
+                talk = button;
+        }
+
+        if (d == null)
+            talk.interactable = false;
+        else
+        {
+            SceneConstants.SceneDiaUI.GetComponentInChildren<Button>().onClick.AddListener(delegate { c.RaiseRequestDialogue(d); });
+            talk.interactable = true;
+        }
+    }
+
+    private void EnableButtons()
+    {
+        foreach (Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<Button>())
+        {
+            if (button.name == "ConvertButton")
+            {
+                if (!SceneConstants.otherAttr.IsConverted)
+                {
+                    int level = 0;
+                    if (SceneConstants.currAttr.Item != "")
+                    {
+                        if (SceneConstants.currAttr.Item == SceneConstants.otherAttr.ItemWeakness)
+                            level += 2;
+                    }
+                    if (SceneConstants.currAttr.Trait == SceneConstants.otherAttr.Trait)
+                        level += 1;
+                    else if (SceneConstants.currAttr.TraitWeakness == SceneConstants.otherAttr.Trait)
+                        level -= 1;
+                    else if (SceneConstants.currAttr.Trait == SceneConstants.otherAttr.TraitWeakness)
+                        level += 2;
+                    if (level >= SceneConstants.otherAttr.ConversionThreshold)
+                        button.interactable = true;
+                }
+
+            }
+            if (button.name == "GiveButton")
+            {
+                if (SceneConstants.otherAttr.IsConverted && (SceneConstants.currAttr.Item != null && SceneConstants.currAttr.Item != "")
+                    && (SceneConstants.otherAttr.Item == null || SceneConstants.otherAttr.Item == ""))
+                    button.interactable = true;
+            }
+        }
+    }
+
+    private void SetText()
+    {
+        // Change Text components of UI
+        foreach (TextMeshProUGUI text in SceneConstants.SceneDiaUI.GetComponentsInChildren<TextMeshProUGUI>())
+        {
+            if (text.name == "DialogueText")
+                text.text = SceneConstants.otherAttr.Greeting;
+            if (text.name == "CharacterName")
+                text.text = SceneConstants.otherAttr.CharName;
+            if (text.name == "CharacterTrait")
+                text.text = SceneConstants.otherAttr.Trait;
+            if (text.name == "CharacterItem")
+                text.text = "Item: " + SceneConstants.currAttr.Item;
+        }
+    }
+
     private void DrawConversionBar() {
         Sprite on = Resources.Load<Sprite>("UIAssets/light2");
         Sprite off = Resources.Load<Sprite>("UIAssets/light");

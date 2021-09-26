@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52e7b839fd4f614428abea4398685dc6, type: 3}
-  m_Name: PreNode3
+  m_Script: {fileID: 11500000, guid: e7a8a0cc3acd27249811cd087129b247, type: 3}
+  m_Name: PreNode1
   m_EditorClassIdentifier: 
   m_Item: 
-  m_DialogueLine: {fileID: 11400000, guid: 18b7bc18c4dcaf84d8086eb1469bcd2b, type: 2}
-  m_NextNode: {fileID: 0}
+  m_DialogueLine: {fileID: 11400000, guid: 9046d646826766b439e696abc8469d59, type: 2}
+  m_Choices:
+  - m_ChoicePreview: Sorry, I'll get back right away.
+    m_ChoiceNode: {fileID: 0}

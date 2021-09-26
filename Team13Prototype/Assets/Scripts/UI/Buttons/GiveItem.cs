@@ -17,7 +17,7 @@ public class GiveItem : MonoBehaviour
         }
 
         SceneConstants.otherAttr.Item = SceneConstants.currAttr.Item;
-        SceneConstants.currAttr.Item = "";
+        SceneConstants.currAttr.Item = null;
 
         foreach (UnityEngine.UI.Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<UnityEngine.UI.Button>())
         {

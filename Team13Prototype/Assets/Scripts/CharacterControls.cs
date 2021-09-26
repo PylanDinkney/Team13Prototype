@@ -71,7 +71,6 @@ public class CharacterControls : MonoBehaviour
                         SceneConstants.currentPossession = 0;
                     else if (SceneConstants.currentPossession < 0)
                         SceneConstants.currentPossession = SceneConstants.Possessable.Count - 1;
-                    Debug.Log(SceneConstants.Possessable[SceneConstants.currentPossession]);
                     foreach (GameObject character in GameObject.FindGameObjectsWithTag("Character"))
                     {
                         if (character.GetComponent<playerAttributes>().CharName == SceneConstants.Possessable[SceneConstants.currentPossession])
