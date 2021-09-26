@@ -7,6 +7,12 @@ public class GiveItem : MonoBehaviour
 {
     public AudioSource giveItemSound;
 
+    void Start()
+    {
+        GameObject tempSound = GameObject.Find("ItemSound");
+        giveItemSound = tempSound.GetComponent<AudioSource>();
+    }
+
     public void Give()
     {
         foreach (TextMeshProUGUI text in SceneConstants.SceneDiaUI.GetComponentsInChildren<TextMeshProUGUI>())

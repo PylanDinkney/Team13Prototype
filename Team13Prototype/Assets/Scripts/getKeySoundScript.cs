@@ -9,8 +9,11 @@ public class getKeySoundScript : MonoBehaviour
     playerAttributes tomAttrib;
 
     // Start is called before the first frame update
+
     void Start()
     {
+        GameObject tempSound = GameObject.Find("ItemSound");
+        getKeySound = tempSound.GetComponent<AudioSource>();
         GameObject tom = GameObject.Find("Tom");
         tomAttrib = tom.GetComponent<playerAttributes>();
         playedSound = false;

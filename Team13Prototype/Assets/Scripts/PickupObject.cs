@@ -9,6 +9,8 @@ public class PickupObject : MonoBehaviour
     public AudioSource pickupItemSound;
 
     void Start(){
+        GameObject tempSound = GameObject.Find("ItemSound");
+        pickupItemSound = tempSound.GetComponent<AudioSource>();
         inRange = false;
         pickupItemSound.Stop();
     }
