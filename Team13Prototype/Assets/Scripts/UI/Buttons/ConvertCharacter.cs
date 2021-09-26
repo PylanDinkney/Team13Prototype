@@ -9,7 +9,7 @@ public class ConvertCharacter : MonoBehaviour
     public void ConvertPlayer()
     {
         SceneConstants.otherAttr.IsConverted = true;
-        SceneConstants.Possessable.Add(SceneConstants.otherAttr.CharName);
+        SceneConstants.Possessable.Add(SceneConstants.otherAttr.CharName, SceneConstants.otherAttr.gameObject);
 
         foreach (UnityEngine.UI.Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<UnityEngine.UI.Button>())
         {
@@ -48,12 +48,13 @@ public class ConvertCharacter : MonoBehaviour
         }
 
         AddDialogue();
+        UpdateWheel();
     }
 
     private void AddDialogue()
     {
-        string path = "Dialogue/" + SceneConstants.Possessable[SceneConstants.currentPossession] + "/" +
-            SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + SceneConstants.otherAttr.CharName + "/Post";
+        string path = "Dialogue/" + SceneConstants.currentPossession + "/" +
+            SceneConstants.currentPossession + "_" + SceneConstants.otherAttr.CharName + "/Post";
 
         DialogueChannel c = (DialogueChannel)Resources.Load("Dialogue/DialogueChannel");
         Dialogue d = (Dialogue)Resources.Load(path);
@@ -73,5 +74,21 @@ public class ConvertCharacter : MonoBehaviour
             SceneConstants.SceneDiaUI.GetComponentInChildren<Button>().onClick.AddListener(delegate { c.RaiseRequestDialogue(d); });
             talk.interactable = true;
         }
+    }
+
+    private void UpdateWheel()
+    {
+        GameObject[] objects = SceneConstants.SelectionWheel.GetComponent<MenuScript>().menuItems;
+        foreach (GameObject item in objects)
+        {
+            MenuItemScript ms = item.GetComponent<MenuItemScript>();
+            if (ms.charName == SceneConstants.otherAttr.CharName)
+            {
+                ms.itemText.text = ms.charName;
+                ms.isActive = true;
+            }
+        }
+        SceneConstants.SelectionWheel.GetComponent<MenuScript>();
+        string tempName = SceneConstants.otherAttr.CharName;
     }
 }

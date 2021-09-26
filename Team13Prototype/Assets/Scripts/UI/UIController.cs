@@ -9,7 +9,8 @@ public class UIController : MonoBehaviour
 {
     void Update()
     {
-        if (!SceneConstants.InDialouge && Input.GetKeyDown(KeyCode.F) && this.gameObject.GetComponent<playerAttributes>().CharName == SceneConstants.Possessable[SceneConstants.currentPossession])
+        if (!SceneConstants.InDialouge && !SceneConstants.InSelection && Input.GetKeyDown(KeyCode.F) && 
+            this.gameObject.GetComponent<playerAttributes>().CharName == SceneConstants.currentPossession)
         {
             // Get closest valid interactable character
             Collider[] objects = Physics.OverlapSphere(transform.position, 2);
@@ -18,7 +19,7 @@ public class UIController : MonoBehaviour
             GameObject other = null;
             foreach (Collider c in objects)
             {
-                if (c.tag == "Character" && c.gameObject.GetComponent<playerAttributes>().CharName != SceneConstants.Possessable[SceneConstants.currentPossession])
+                if (c.tag == "Character" && c.gameObject.GetComponent<playerAttributes>().CharName != SceneConstants.currentPossession)
                 {
                     if (other == null)
                     {
@@ -83,13 +84,13 @@ public class UIController : MonoBehaviour
         string path = "";
         if (SceneConstants.otherAttr.IsConverted)
         {
-            path = "Dialogue/" + SceneConstants.Possessable[SceneConstants.currentPossession] + "/" +
-            SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + SceneConstants.otherAttr.CharName + "/Post";
+            path = "Dialogue/" + SceneConstants.currentPossession + "/" +
+            SceneConstants.currentPossession + "_" + SceneConstants.otherAttr.CharName + "/Post";
         }
         else
         {
-            path = "Dialogue/" + SceneConstants.Possessable[SceneConstants.currentPossession] + "/" +
-            SceneConstants.Possessable[SceneConstants.currentPossession] + "_" + SceneConstants.otherAttr.CharName + "/Pre";
+            path = "Dialogue/" + SceneConstants.currentPossession + "/" +
+            SceneConstants.currentPossession + "_" + SceneConstants.otherAttr.CharName + "/Pre";
         }
 
         DialogueChannel c = (DialogueChannel)Resources.Load("Dialogue/DialogueChannel");

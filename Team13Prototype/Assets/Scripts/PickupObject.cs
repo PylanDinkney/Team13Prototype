@@ -21,12 +21,12 @@ public class PickupObject : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.GetComponent<playerAttributes>().CharName == SceneConstants.Possessable[SceneConstants.currentPossession])
+        if(other.gameObject.GetComponent<playerAttributes>().CharName == SceneConstants.currentPossession)
             inRange = true;
     }
 
     void OnTriggerExit(Collider other){
-        if(other.gameObject.GetComponent<playerAttributes>().CharName == SceneConstants.Possessable[SceneConstants.currentPossession])
+        if(other.gameObject.GetComponent<playerAttributes>().CharName == SceneConstants.currentPossession)
             inRange = false;
     }
 }

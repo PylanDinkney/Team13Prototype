@@ -8,8 +8,9 @@ public class GameViewController : MonoBehaviour
 {
     void Start()
     {
-        SceneConstants.Possessable = GetSceneCharacters();
-        SceneConstants.currentPossession = 0;
+        GetSceneCharacters();
+        SceneConstants.currentPossession = "Summoner";
+        SceneConstants.currAttr = SceneConstants.Possessable[SceneConstants.currentPossession].GetComponent<playerAttributes>();
 
         SetupUI();
 
@@ -19,24 +20,13 @@ public class GameViewController : MonoBehaviour
     }
 
     //Gets names of all game objecst that are characters (have the "Character" tag)
-    private List<string> GetSceneCharacters()
+    private void GetSceneCharacters()
     {
-        bool first = false;
-        List<string> temp = new List<string>();
         foreach (GameObject c in GameObject.FindGameObjectsWithTag("Character"))
         {
             if (c.GetComponent<playerAttributes>().IsConverted)
-            {
-                temp.Add(c.GetComponent<playerAttributes>().CharName);
-                if (!first)
-                {
-                    first = true;
-                    SceneConstants.currAttr = c.GetComponent<playerAttributes>();
-                }
-            }
+                SceneConstants.Possessable.Add(c.GetComponent<playerAttributes>().CharName, c);
         }
-
-        return temp;
     }
 
     //Setup necessary Player and Dialogue UI elements
@@ -44,6 +34,8 @@ public class GameViewController : MonoBehaviour
     {
         SceneConstants.SceneDiaUI = GameObject.Find("DialogueUI");
         SceneConstants.PlayerUI = GameObject.Find("PlayerUI");
+        SceneConstants.SelectionWheel = GameObject.Find("PieMenu");
+        SceneConstants.SelectionWheel.SetActive(false);
 
         foreach (UnityEngine.UI.Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<UnityEngine.UI.Button>())
         {
