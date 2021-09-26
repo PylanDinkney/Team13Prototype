@@ -6,14 +6,16 @@ public class PickupObject : MonoBehaviour
 {
     public string item = "emptyItem";
     private bool inRange;
+    public AudioSource pickupItemSound;
 
     void Start(){
         inRange = false;
+        pickupItemSound.Stop();
     }
 
     void Update(){
         if(Input.GetKeyDown(KeyCode.C) && inRange == true){
-            Debug.Log("Picked up item!");
+            pickupItemSound.Play();
             SceneConstants.currAttr.Item = item;
             Destroy(gameObject);
         } 

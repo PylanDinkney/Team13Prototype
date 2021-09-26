@@ -5,6 +5,8 @@ using TMPro;
 
 public class GiveItem : MonoBehaviour
 {
+    public AudioSource giveItemSound;
+
     public void Give()
     {
         foreach (TextMeshProUGUI text in SceneConstants.SceneDiaUI.GetComponentsInChildren<TextMeshProUGUI>())
@@ -18,6 +20,7 @@ public class GiveItem : MonoBehaviour
 
         SceneConstants.otherAttr.Item = SceneConstants.currAttr.Item;
         SceneConstants.currAttr.Item = null;
+        giveItemSound.Play();
 
         foreach (UnityEngine.UI.Button button in SceneConstants.SceneDiaUI.GetComponentsInChildren<UnityEngine.UI.Button>())
         {
