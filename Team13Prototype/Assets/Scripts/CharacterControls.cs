@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterControls : MonoBehaviour
 {
@@ -77,6 +79,23 @@ public class CharacterControls : MonoBehaviour
                         {
                             GameObject.Find("Main Camera").GetComponent<CameraFollow>().target = character.transform;
                             SceneConstants.currAttr = character.GetComponent<playerAttributes>();
+
+                            foreach (TextMeshProUGUI text in SceneConstants.PlayerUI.GetComponentsInChildren<TextMeshProUGUI>())
+                            {
+                                if (text.name == "PlayerName")
+                                    text.text = SceneConstants.currAttr.CharName;
+                                if (text.name == "PlayerItem")
+                                    text.text = "Item: " + SceneConstants.currAttr.Item;
+                            }
+                            foreach (Image portrait in SceneConstants.PlayerUI.GetComponentsInChildren<Image>())
+                            {
+                                if (portrait.name == "PlayerPortrait")
+                                {
+                                    portrait.sprite = SceneConstants.currAttr.Portrait;
+                                    break;
+                                }
+                            }
+
                             break;
                         }
                     }

@@ -10,6 +10,7 @@ public class SceneConstants : MonoBehaviour
     public static playerAttributes currAttr;
     public static playerAttributes otherAttr;
     public static GameObject SceneDiaUI;
+    public static GameObject PlayerUI;
     public static bool InDialouge;
     public static bool InConversation;
     public static List<Image> conversionBar;

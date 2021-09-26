@@ -110,9 +110,9 @@ public class UIDialogueTextBoxController : MonoBehaviour, DialogueNodeVisitor
         {
             SceneConstants.currAttr.Item = node.Item;
 
-            foreach (TextMeshProUGUI text in SceneConstants.SceneDiaUI.GetComponentsInChildren<TextMeshProUGUI>())
+            foreach (TextMeshProUGUI text in SceneConstants.PlayerUI.GetComponentsInChildren<TextMeshProUGUI>())
             {
-                if (text.name == "CharacterItem")
+                if (text.name == "PlayerItem")
                 {
                     text.text = "Item: " + SceneConstants.currAttr.Item;
                     break;
@@ -141,9 +141,9 @@ public class UIDialogueTextBoxController : MonoBehaviour, DialogueNodeVisitor
         {
             SceneConstants.currAttr.Item = node.Item;
 
-            foreach (TextMeshProUGUI text in SceneConstants.SceneDiaUI.GetComponentsInChildren<TextMeshProUGUI>())
+            foreach (TextMeshProUGUI text in SceneConstants.PlayerUI.GetComponentsInChildren<TextMeshProUGUI>())
             {
-                if (text.name == "CharacterItem")
+                if (text.name == "PlayerItem")
                 {
                     text.text = "Item: " + SceneConstants.currAttr.Item;
                     break;

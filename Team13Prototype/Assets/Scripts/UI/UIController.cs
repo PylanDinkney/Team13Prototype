@@ -47,6 +47,7 @@ public class UIController : MonoBehaviour
                 AddDialogue();
                 EnableButtons();
                 SetText();
+                SetPortrait();
                 DrawConversionBar();
 
                 SceneConstants.SceneDiaUI.SetActive(true);
@@ -156,8 +157,26 @@ public class UIController : MonoBehaviour
                 text.text = SceneConstants.otherAttr.CharName;
             if (text.name == "CharacterTrait")
                 text.text = SceneConstants.otherAttr.Trait;
-            if (text.name == "CharacterItem")
+        }
+        foreach (TextMeshProUGUI text in SceneConstants.PlayerUI.GetComponentsInChildren<TextMeshProUGUI>())
+        {
+            if (text.name == "PlayerItem")
+            {
                 text.text = "Item: " + SceneConstants.currAttr.Item;
+                break;
+            }
+        }
+    }
+
+    private void SetPortrait()
+    {
+        foreach (Image portrait in SceneConstants.SceneDiaUI.GetComponentsInChildren<Image>())
+        {
+            if (portrait.name == "DialoguePortrait")
+            {
+                portrait.sprite = SceneConstants.otherAttr.Portrait;
+                break;
+            }
         }
     }
 
