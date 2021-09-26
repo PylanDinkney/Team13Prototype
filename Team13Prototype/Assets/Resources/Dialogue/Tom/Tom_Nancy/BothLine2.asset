@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3e04482476ffe4d9fc636bc448bbfd, type: 3}
   m_Name: BothLine2
   m_EditorClassIdentifier: 
-  m_Text: He's busy in his office doing secret work.
+  m_Text: She's busy in her office doing secret work.

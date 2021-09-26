@@ -15,5 +15,5 @@ MonoBehaviour:
   m_Item: 
   m_DialogueLine: {fileID: 11400000, guid: 1e21fdde3bf38534ab0d061f8e99b98e, type: 2}
   m_Choices:
-  - m_ChoicePreview: Do you have the key to his office?
+  - m_ChoicePreview: Do you have the key to her office?
     m_ChoiceNode: {fileID: 11400000, guid: d318f8fa9d9cba54b8f4a24759b44088, type: 2}
