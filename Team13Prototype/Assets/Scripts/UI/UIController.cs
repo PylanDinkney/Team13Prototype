@@ -13,7 +13,7 @@ public class UIController : MonoBehaviour
             this.gameObject.GetComponent<playerAttributes>().CharName == SceneConstants.currentPossession)
         {
             // Get closest valid interactable character
-            Collider[] objects = Physics.OverlapSphere(transform.position, 2);
+            Collider[] objects = Physics.OverlapSphere(transform.position, 3);
 
             float dist = 0;
             GameObject other = null;

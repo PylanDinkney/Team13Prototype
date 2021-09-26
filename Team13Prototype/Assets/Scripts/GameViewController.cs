@@ -6,7 +6,12 @@ using UnityEngine.UI;
 
 public class GameViewController : MonoBehaviour
 {
-    void Start()
+    private void Start()
+    {
+        SetupScene();
+    }
+
+    public void SetupScene()
     {
         GetSceneCharacters();
         SceneConstants.currentPossession = "Summoner";
@@ -22,6 +27,7 @@ public class GameViewController : MonoBehaviour
     //Gets names of all game objecst that are characters (have the "Character" tag)
     private void GetSceneCharacters()
     {
+        SceneConstants.Possessable = new Dictionary<string, GameObject>();
         foreach (GameObject c in GameObject.FindGameObjectsWithTag("Character"))
         {
             if (c.GetComponent<playerAttributes>().IsConverted)

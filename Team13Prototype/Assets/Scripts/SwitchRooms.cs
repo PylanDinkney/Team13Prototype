@@ -12,5 +12,6 @@ public class SwitchRooms : MonoBehaviour
         if(other.gameObject.tag == "Character" && other.gameObject.GetComponent<playerAttributes>().CharName == SceneConstants.currentPossession){
             SceneManager.LoadScene(roomToGoTo);
         }
+        
     }
 }

@@ -6,12 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MovementTestingScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
     path: Assets/Scenes/Basementwhitebox.unity
     guid: 3e331bb840e74264399e237bf132fa33
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Storewhitebox.unity
+    guid: 1faeb2f25a3dc5747883ed81046ce158
   m_configObjects: {}

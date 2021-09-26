@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a8a0cc3acd27249811cd087129b247, type: 3}
   m_Name: PostNode1
   m_EditorClassIdentifier: 
+  m_Item: 
   m_DialogueLine: {fileID: 11400000, guid: 448ac22a47cdd0d4ebd97dfbdd536bbe, type: 2}
   m_Choices:
   - m_ChoicePreview: What can you tell me about your CEO?
-    m_ChoiceNode: {fileID: 11400000, guid: 2f98a520b6b74f94c9e40539f77b968d, type: 2}
+    m_ChoiceNode: {fileID: 11400000, guid: ae277d3944fdcef469c03131422fbee8, type: 2}
   - m_ChoicePreview: What do you know about your manager?
-    m_ChoiceNode: {fileID: 11400000, guid: 15fc50680ff931d4dbe93c1b4527f6d4, type: 2}
+    m_ChoiceNode: {fileID: 11400000, guid: 25c4c8fcff6451a4aa779c9094091f34, type: 2}

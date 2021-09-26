@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PreNode3
   m_EditorClassIdentifier: 
   m_Item: 
-  m_DialogueLine: {fileID: 11400000, guid: 18b7bc18c4dcaf84d8086eb1469bcd2b, type: 2}
+  m_DialogueLine: {fileID: 11400000, guid: 845aa1a2f6210f54f815f67ef799a758, type: 2}
   m_NextNode: {fileID: 0}

@@ -3634,7 +3634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 15788285149280652, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -266.53
+      value: -270.05
       objectReference: {fileID: 0}
     - target: {fileID: 15788285149280652, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3702,7 +3702,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: Greeting
-      value: Hows it going?
+      value: How's it going?
       objectReference: {fileID: 0}
     - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: Portrait
@@ -3761,7 +3761,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 15788285149280652, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -268.54
+      value: -270.3
       objectReference: {fileID: 0}
     - target: {fileID: 15788285149280652, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3821,7 +3821,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: Trait
-      value: Obidient
+      value: Obedient
       objectReference: {fileID: 0}
     - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: CharName
@@ -5505,7 +5505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 15788285149280652, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -266.53
+      value: -270.07
       objectReference: {fileID: 0}
     - target: {fileID: 15788285149280652, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5593,7 +5593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: TraitWeakness
-      value: Obidient
+      value: Obedient
       objectReference: {fileID: 0}
     - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: ConversionThreshold

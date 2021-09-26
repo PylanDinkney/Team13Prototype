@@ -27,7 +27,7 @@ public class ConvertCharacter : MonoBehaviour
         {
             if (text.name == "DialogueText")
             {
-                text.text = "** " + SceneConstants.otherAttr.CharName + " has been converted and is now controllable **";
+                text.text = "** " + SceneConstants.otherAttr.CharName + " has been converted and is now controllable. You can select the character portrait to possess a different character. **";
                 break;
             }
         }
