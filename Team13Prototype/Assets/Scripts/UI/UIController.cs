@@ -175,8 +175,16 @@ public class UIController : MonoBehaviour
         {
             if (portrait.name == "DialoguePortrait")
             {
-                portrait.sprite = SceneConstants.otherAttr.Portrait;
-                break;
+                if (SceneConstants.otherAttr.IsConverted)
+                {
+                    portrait.sprite = SceneConstants.otherAttr.PostPortrait;
+                    break;
+                }
+                else
+                {
+                    portrait.sprite = SceneConstants.otherAttr.PrePortrait;
+                    break;
+                }
             }
         }
     }

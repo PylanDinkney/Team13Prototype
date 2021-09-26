@@ -8908,6 +8908,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
+      propertyPath: PrePortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: 362b1693c443a62498ec912d151a68dd, type: 3}
+    - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
+      propertyPath: PostPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: 362b1693c443a62498ec912d151a68dd, type: 3}
+    - target: {fileID: 988886803656463672, guid: 8a07c75649fe0cc41808b2e86a8e1c21, type: 3}
       propertyPath: itemWeakness
       value: none
       objectReference: {fileID: 0}

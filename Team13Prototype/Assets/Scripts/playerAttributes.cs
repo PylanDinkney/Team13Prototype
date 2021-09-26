@@ -13,5 +13,6 @@ public class playerAttributes : MonoBehaviour
     public bool IsConverted;
     public string Greeting;
     public string LureChar;
-    public Sprite Portrait;
+    public Sprite PrePortrait;
+    public Sprite PostPortrait;
 }

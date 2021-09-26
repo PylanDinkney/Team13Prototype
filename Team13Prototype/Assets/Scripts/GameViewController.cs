@@ -69,7 +69,7 @@ public class GameViewController : MonoBehaviour
         {
             if (portrait.name == "PlayerPortrait")
             {
-                portrait.sprite = SceneConstants.currAttr.Portrait;
+                portrait.sprite = SceneConstants.currAttr.PostPortrait;
                 break;
             }
         }

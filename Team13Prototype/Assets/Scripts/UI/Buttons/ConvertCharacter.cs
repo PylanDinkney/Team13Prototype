@@ -49,6 +49,7 @@ public class ConvertCharacter : MonoBehaviour
 
         AddDialogue();
         UpdateWheel();
+        UpdatePortrait();
     }
 
     private void AddDialogue()
@@ -90,5 +91,17 @@ public class ConvertCharacter : MonoBehaviour
         }
         SceneConstants.SelectionWheel.GetComponent<MenuScript>();
         string tempName = SceneConstants.otherAttr.CharName;
+    }
+
+    private void UpdatePortrait()
+    {
+        foreach (Image portrait in SceneConstants.SceneDiaUI.GetComponentsInChildren<Image>())
+        {
+            if (portrait.name == "DialoguePortrait")
+            {
+                portrait.sprite = SceneConstants.otherAttr.PostPortrait;
+                break;
+            }
+        }
     }
 }
